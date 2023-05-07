@@ -1,0 +1,5 @@
+package spells;
+
+public enum SpellType {
+    FIRE_TOUCH, HEADACHE, HEALTHY, LIGHTNING, LIGHTNING_CHAIN, MONSTER_BANISHMENT, WALL_OF_WIRE
+}
