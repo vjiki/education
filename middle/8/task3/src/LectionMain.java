@@ -12,7 +12,9 @@ public class LectionMain {
       String name = "vasya" + i;
       Student student = new Student(name, utils.getRandomLectionSet());
       students.add(student);
+      System.out.println(student);
     }
+    System.out.println("==== Starting Processing ====");
 
     ReportPrinter reportPrinter = new ReportPrinter();
 
