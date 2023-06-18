@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/middle/8/task2/calculator.iml" filepath="$PROJECT_DIR$/middle/8/task2/calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/8/task2/calculator.iml" filepath="$PROJECT_DIR$/mera/middle/8/task2/calculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/yandex/1/datacenter/datacenter.iml" filepath="$PROJECT_DIR$/yandex/1/datacenter/datacenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/education.iml" filepath="$PROJECT_DIR$/.idea/education.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/7/task1/extends-type-restriction.iml" filepath="$PROJECT_DIR$/middle/7/task1/extends-type-restriction.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/6/task1/find-animals.iml" filepath="$PROJECT_DIR$/middle/6/task1/find-animals.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/3/task1/fix-price-shop.iml" filepath="$PROJECT_DIR$/middle/3/task1/fix-price-shop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/8/task3/lection-streams.iml" filepath="$PROJECT_DIR$/middle/8/task3/lection-streams.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/2/task1/magic-number.iml" filepath="$PROJECT_DIR$/middle/2/task1/magic-number.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/1/task1/numbers.iml" filepath="$PROJECT_DIR$/middle/1/task1/numbers.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/2/task2/opposites-attraction.iml" filepath="$PROJECT_DIR$/middle/2/task2/opposites-attraction.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/9/task1-v1/serialization.iml" filepath="$PROJECT_DIR$/middle/9/task1-v1/serialization.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/9/task1-v2/serialization-pavlov.iml" filepath="$PROJECT_DIR$/middle/9/task1-v2/serialization-pavlov.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/8/task1/sort-compare.iml" filepath="$PROJECT_DIR$/middle/8/task1/sort-compare.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middle/4/task1/wizard-battle.iml" filepath="$PROJECT_DIR$/middle/4/task1/wizard-battle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/7/task1/extends-type-restriction.iml" filepath="$PROJECT_DIR$/mera/middle/7/task1/extends-type-restriction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/6/task1/find-animals.iml" filepath="$PROJECT_DIR$/mera/middle/6/task1/find-animals.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/3/task1/fix-price-shop.iml" filepath="$PROJECT_DIR$/mera/middle/3/task1/fix-price-shop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/8/task3/lection-streams.iml" filepath="$PROJECT_DIR$/mera/middle/8/task3/lection-streams.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/2/task1/magic-number.iml" filepath="$PROJECT_DIR$/mera/middle/2/task1/magic-number.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/1/task1/numbers.iml" filepath="$PROJECT_DIR$/mera/middle/1/task1/numbers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/2/task2/opposites-attraction.iml" filepath="$PROJECT_DIR$/mera/middle/2/task2/opposites-attraction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/9/task1-v1/serialization.iml" filepath="$PROJECT_DIR$/mera/middle/9/task1-v1/serialization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/9/task1-v2/serialization-pavlov.iml" filepath="$PROJECT_DIR$/mera/middle/9/task1-v2/serialization-pavlov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/8/task1/sort-compare.iml" filepath="$PROJECT_DIR$/mera/middle/8/task1/sort-compare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mera/middle/4/task1/wizard-battle.iml" filepath="$PROJECT_DIR$/mera/middle/4/task1/wizard-battle.iml" />
     </modules>
   </component>
 </project>
