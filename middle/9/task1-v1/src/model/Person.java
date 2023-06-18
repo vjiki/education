@@ -6,10 +6,10 @@ import annotations.XmlTypeName;
 
 @XmlTypeName("Человек")
 public class Person {
-    @XmlName(firstId = "Имя")
+    @XmlName(v = "Имя")
     private String firstName="Vasya";
 
-    @XmlName(firstId = "Возраст")
+    @XmlName(v = "Возраст")
     private double age = 12;
 
     @XmlIgnore

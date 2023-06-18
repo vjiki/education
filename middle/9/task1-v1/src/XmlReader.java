@@ -35,7 +35,7 @@ public class XmlReader {
                     final XmlName annotation = declaredField.getAnnotation(XmlName.class);
 
                     if (annotation != null) {
-                        name = annotation.firstId();
+                        name = annotation.v();
                     }
 
                     sb.append("\t<").append(name).append(">");
@@ -57,11 +57,11 @@ public class XmlReader {
         for (Field declaredField: declaredFields) {
             declaredField.setAccessible(true);
             if ( declaredField.getType().isPrimitive()) {
-                declaredField.set(object, Double.parseDouble(getFieldValue(xmlRow, declaredField.getAnnotation(XmlName.class).firstId())));
+                declaredField.set(object, Double.parseDouble(getFieldValue(xmlRow, declaredField.getAnnotation(XmlName.class).v())));
             } else {
                 if (declaredField.getAnnotation(XmlName.class) != null) {
                     declaredField.set(object,
-                        getFieldValue(xmlRow, declaredField.getAnnotation(XmlName.class).firstId()));
+                        getFieldValue(xmlRow, declaredField.getAnnotation(XmlName.class).v()));
                 }
             }
         }
