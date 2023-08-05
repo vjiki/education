@@ -10,6 +10,7 @@
         <module name="concurrent-tic-tac-toe" />
         <module name="bst-pretty-print" />
         <module name="collections-count-words" />
+        <module name="design-patterns" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
