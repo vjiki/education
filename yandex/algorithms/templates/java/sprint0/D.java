@@ -12,6 +12,7 @@ public class D {
     // Если нет - то верните пустой список 
     private static List<Integer> twoSum(List<Integer> arr, int targetSum) {
         // Ваше решение
+        return null;
     }
     public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +14,15 @@ public class B {
 
     private static List<Integer> zip(List<Integer> a, List<Integer> b) {
         // Ваше решение
+        List<Integer> c = new LinkedList<>();
+        Iterator<Integer> ai = a.iterator();
+        Iterator<Integer> bi = b.iterator();
+
+        while (ai.hasNext() && bi.hasNext()) {
+            c.add(ai.next());
+            c.add(bi.next());
+        }
+        return c;
     }
 
 

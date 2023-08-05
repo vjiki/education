@@ -11,6 +11,7 @@ public class C {
 
     private static List<Double> movingAverage(int n, List<Integer> arr, int windowSize) {
         // ваше решение
+        return null;
     }
 
     public static void main(String[] args) throws IOException {
