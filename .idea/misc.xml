@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/epam/bts-pretty-print/pom.xml" />
         <option value="$PROJECT_DIR$/epam/collections-cout-words/pom.xml" />
         <option value="$PROJECT_DIR$/epam/concurrent-tic-tac-toe/pom.xml" />
+        <option value="$PROJECT_DIR$/epam/dao/pom.xml" />
       </list>
     </option>
   </component>
