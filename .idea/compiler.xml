@@ -6,9 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="collections-cout-words" />
+        <module name="concurrent-tic-tac-toe" />
         <module name="bst-pretty-print" />
+        <module name="collections-count-words" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="collections-cout-words" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
