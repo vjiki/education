@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="dao" />
         <module name="concurrent-tic-tac-toe" />
+        <module name="employee-catalog" />
         <module name="bst-pretty-print" />
         <module name="collections-count-words" />
         <module name="design-patterns" />
