@@ -15,6 +15,7 @@
         <module name="java-collections-iterator" />
         <module name="dao" />
         <module name="java-basics-template" />
+        <module name="java-data-handling-files" />
         <module name="java-collections-generics" />
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
