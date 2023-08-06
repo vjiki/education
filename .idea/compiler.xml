@@ -10,6 +10,7 @@
         <module name="java-basics-template" />
         <module name="java-collections-generics" />
         <module name="concurrent-tic-tac-toe" />
+        <module name="java-collections-multimap" />
         <module name="employees-catalogue" />
         <module name="bst-pretty-print" />
         <module name="collections-count-words" />
