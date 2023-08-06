@@ -20,6 +20,7 @@
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
         <module name="java-data-handling-template-text" />
+        <module name="risky-calls" />
         <module name="bst-pretty-print" />
         <module name="design-patterns" />
         <module name="java-exceptions-template" />
