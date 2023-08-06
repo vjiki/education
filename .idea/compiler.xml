@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="java-exceptions-template" />
         <module name="java-collections-text-analizer" />
         <module name="java-collections-wildcards-task2" />
         <module name="java-data-handling-template-dates" />
@@ -14,6 +15,7 @@
         <module name="java-data-handling-template-big-numbers" />
         <module name="collections-count-words" />
         <module name="java-collections-iterator" />
+        <module name="oop-basics-figures" />
         <module name="dao" />
         <module name="java-basics-template" />
         <module name="java-data-handling-files" />
