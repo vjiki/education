@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="dao" />
         <module name="java-basics-template" />
+        <module name="java-collections-generics" />
         <module name="concurrent-tic-tac-toe" />
         <module name="employees-catalogue" />
         <module name="bst-pretty-print" />
         <module name="collections-count-words" />
         <module name="design-patterns" />
+        <module name="java-collections-iterator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
