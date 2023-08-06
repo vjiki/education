@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="dao" />
+        <module name="java-basics-template" />
         <module name="concurrent-tic-tac-toe" />
-        <module name="employee-catalog" />
+        <module name="employees-catalogue" />
         <module name="bst-pretty-print" />
         <module name="collections-count-words" />
         <module name="design-patterns" />
@@ -16,6 +17,12 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="collections-cout-words" target="17" />
+      <module name="employee-catalog" target="17" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="employees-catalogue" options="-parameters" />
+    </option>
   </component>
 </project>
