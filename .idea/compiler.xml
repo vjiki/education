@@ -9,6 +9,7 @@
         <module name="oop-basics-triangle" />
         <module name="row-mapper" />
         <module name="java-collections-text-analizer" />
+        <module name="set-mapper" />
         <module name="java-collections-wildcards-task2" />
         <module name="java-collections-wildcards-task1" />
         <module name="java-data-handling-template-big-numbers" />
