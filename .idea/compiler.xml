@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="oop-basics-triangle" />
+        <module name="row-mapper" />
         <module name="java-collections-text-analizer" />
         <module name="java-collections-wildcards-task2" />
         <module name="java-collections-wildcards-task1" />
