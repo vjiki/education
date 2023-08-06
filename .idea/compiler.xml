@@ -16,6 +16,7 @@
         <module name="java-data-handling-template-big-numbers" />
         <module name="scheduling-assistant" />
         <module name="oop-basics-figures" />
+        <module name="thread-factoring" />
         <module name="dao" />
         <module name="meet-autocode" />
         <module name="servlets-expression-calculator" />

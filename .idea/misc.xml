@@ -41,6 +41,7 @@
         <option value="$PROJECT_DIR$/epam/servlets-expression-calculator/pom.xml" />
         <option value="$PROJECT_DIR$/epam/streams-count-words/pom.xml" />
         <option value="$PROJECT_DIR$/epam/streams-pipelines/pom.xml" />
+        <option value="$PROJECT_DIR$/epam/thread-factoring/pom.xml" />
       </list>
     </option>
   </component>

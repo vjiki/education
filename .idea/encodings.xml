@@ -69,5 +69,7 @@
     <file url="file://$PROJECT_DIR$/epam/streams-count-words/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/epam/streams-pipelines/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/epam/streams-pipelines/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/epam/thread-factoring/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/epam/thread-factoring/src/main/resources" charset="UTF-8" />
   </component>
 </project>
