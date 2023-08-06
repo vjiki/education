@@ -7,29 +7,30 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="oop-basics-triangle" />
-        <module name="java-exceptions-template" />
         <module name="java-collections-text-analizer" />
         <module name="java-collections-wildcards-task2" />
-        <module name="java-data-handling-template-dates" />
-        <module name="java-design-template" />
         <module name="java-collections-wildcards-task1" />
         <module name="java-data-handling-template-big-numbers" />
-        <module name="collections-count-words" />
-        <module name="java-collections-iterator" />
         <module name="oop-basics-figures" />
         <module name="dao" />
         <module name="meet-autocode" />
         <module name="java-basics-template" />
-        <module name="java-data-handling-files" />
-        <module name="java-collections-generics" />
         <module name="java-data-handling-template-regexp" />
         <module name="oop-basics-segments" />
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
         <module name="java-data-handling-template-text" />
-        <module name="employees-catalogue" />
         <module name="bst-pretty-print" />
         <module name="design-patterns" />
+        <module name="java-exceptions-template" />
+        <module name="java-data-handling-template-dates" />
+        <module name="java-design-template" />
+        <module name="collections-count-words" />
+        <module name="java-collections-iterator" />
+        <module name="java-data-handling-files" />
+        <module name="java-collections-generics" />
+        <module name="rectangular-spliterator" />
+        <module name="employees-catalogue" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
