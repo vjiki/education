@@ -9,6 +9,7 @@
         <module name="dao" />
         <module name="java-basics-template" />
         <module name="java-collections-generics" />
+        <module name="java-collections-text-analizer" />
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
         <module name="employees-catalogue" />
