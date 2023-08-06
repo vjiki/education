@@ -18,6 +18,7 @@
         <module name="java-collections-iterator" />
         <module name="oop-basics-figures" />
         <module name="dao" />
+        <module name="meet-autocode" />
         <module name="java-basics-template" />
         <module name="java-data-handling-files" />
         <module name="java-collections-generics" />
