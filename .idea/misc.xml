@@ -37,6 +37,7 @@
         <option value="$PROJECT_DIR$/epam/scheduling-assistant/pom.xml" />
         <option value="$PROJECT_DIR$/epam/service/pom.xml" />
         <option value="$PROJECT_DIR$/epam/set-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/epam/sql-queries/pom.xml" />
       </list>
     </option>
   </component>
