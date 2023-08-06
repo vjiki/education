@@ -6,18 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="java-collections-text-analizer" />
+        <module name="java-collections-wildcards-task2" />
+        <module name="java-collections-wildcards-task1" />
+        <module name="collections-count-words" />
+        <module name="java-collections-iterator" />
         <module name="dao" />
         <module name="java-basics-template" />
         <module name="java-collections-generics" />
-        <module name="java-collections-text-analizer" />
-        <module name="java-collections-wildcards-task1" />
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
         <module name="employees-catalogue" />
         <module name="bst-pretty-print" />
-        <module name="collections-count-words" />
         <module name="design-patterns" />
-        <module name="java-collections-iterator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
