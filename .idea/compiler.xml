@@ -37,6 +37,7 @@
         <module name="java-collections-generics" />
         <module name="rectangular-spliterator" />
         <module name="service" />
+        <module name="streams-pipelines" />
         <module name="streams-count-words" />
         <module name="employees-catalogue" />
       </profile>
