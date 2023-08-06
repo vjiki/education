@@ -1,0 +1,1 @@
+Yesterday evening a transfer was made from account number 4301 0234 2145 2140 to account 5042 2012 0532 2043 in the amount of $ ${payment_amount}. $ ${balance} left on the account

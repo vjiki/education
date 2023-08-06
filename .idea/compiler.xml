@@ -17,6 +17,7 @@
         <module name="java-basics-template" />
         <module name="java-data-handling-files" />
         <module name="java-collections-generics" />
+        <module name="java-data-handling-template-regexp" />
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
         <module name="employees-catalogue" />
