@@ -33,6 +33,7 @@
         <module name="java-data-handling-files" />
         <module name="java-collections-generics" />
         <module name="rectangular-spliterator" />
+        <module name="service" />
         <module name="employees-catalogue" />
       </profile>
     </annotationProcessing>
