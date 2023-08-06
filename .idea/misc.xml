@@ -38,6 +38,7 @@
         <option value="$PROJECT_DIR$/epam/service/pom.xml" />
         <option value="$PROJECT_DIR$/epam/set-mapper/pom.xml" />
         <option value="$PROJECT_DIR$/epam/sql-queries/pom.xml" />
+        <option value="$PROJECT_DIR$/epam/servlets-expression-calculator/pom.xml" />
       </list>
     </option>
   </component>
