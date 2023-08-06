@@ -10,6 +10,7 @@
         <module name="java-collections-wildcards-task2" />
         <module name="java-data-handling-template-dates" />
         <module name="java-collections-wildcards-task1" />
+        <module name="java-data-handling-template-big-numbers" />
         <module name="collections-count-words" />
         <module name="java-collections-iterator" />
         <module name="dao" />
