@@ -20,6 +20,7 @@
         <module name="java-data-handling-template-regexp" />
         <module name="concurrent-tic-tac-toe" />
         <module name="java-collections-multimap" />
+        <module name="java-data-handling-template-text" />
         <module name="employees-catalogue" />
         <module name="bst-pretty-print" />
         <module name="design-patterns" />
