@@ -1,4 +1,4 @@
-package org.example;
+package org.leetcode;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
