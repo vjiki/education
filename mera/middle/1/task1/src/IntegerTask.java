@@ -12,36 +12,57 @@ public class IntegerTask {
 
     public static void main(String[] args) {
 
-        System.out.printf("Default numbers: first: %s second: %s \n", var1, var2);
+//       0 00000000 00000000
+//       1 11111111 11111111
 
-        if (args.length == 2) {
-            var1 = Integer.valueOf(args[0]);
-            var2 = Integer.valueOf(args[1]);
-            System.out.printf("Numbers from Command Line Arguments: first: %s second: %s \n", var1, var2);
+
+        int a = 2000000000 + 2000000000;
+        a++;
+
+        ++a;
+
+        System.out.println(a);
+
+        int maxInt = 2147483647;
+        int restInt = maxInt - 2000000000;
+
+        if ( (restInt + 2000000000) > 2147483647) {
+            System.out.println(2000000000 - restInt);
         }
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter first number :");
-        if (sc.hasNextInt()) {
-            var1 = sc.nextInt();
-        } else {
-            System.out.println("Skipping first number from CLI");
-        }
-        Scanner sc2 = new Scanner(System.in);
-        System.out.println("Enter second number :");
-        if (sc2.hasNextInt()) {
-            var2 = sc2.nextInt();
-        } else {
-            System.out.println("Skipping second number from CLI");
-        }
 
-        if (var1.compareTo(var2) > 0) {
-            System.out.printf("Число %s больше %s \n", var1, var2);
-        } else if ((var1.compareTo(var2) < 0)) {
-            System.out.printf("Число %s меньше %s \n", var1, var2);
-        }
+        System.out.println(a);
 
-        System.out.println("sum is " + Integer.sum(var1, var2));
+//        System.out.printf("Default numbers: first: %s second: %s \n", var1, var2);
+//
+//        if (args.length == 2) {
+//            var1 = Integer.valueOf(args[0]);
+//            var2 = Integer.valueOf(args[1]);
+//            System.out.printf("Numbers from Command Line Arguments: first: %s second: %s \n", var1, var2);
+//        }
+//
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter first number :");
+//        if (sc.hasNextInt()) {
+//            var1 = sc.nextInt();
+//        } else {
+//            System.out.println("Skipping first number from CLI");
+//        }
+//        Scanner sc2 = new Scanner(System.in);
+//        System.out.println("Enter second number :");
+//        if (sc2.hasNextInt()) {
+//            var2 = sc2.nextInt();
+//        } else {
+//            System.out.println("Skipping second number from CLI");
+//        }
+//
+//        if (var1.compareTo(var2) > 0) {
+//            System.out.printf("Число %s больше %s \n", var1, var2);
+//        } else if ((var1.compareTo(var2) < 0)) {
+//            System.out.printf("Число %s меньше %s \n", var1, var2);
+//        }
+//
+//        System.out.println("sum is " + Integer.sum(var1, var2));
 
     }
 }
