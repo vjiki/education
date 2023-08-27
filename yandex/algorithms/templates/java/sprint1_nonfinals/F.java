@@ -1,50 +1,35 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 public class F {
 
-    private static boolean isPalindromeV0(String text) {
-        char[] array = text.toCharArray();
-
-        int j = array.length - 1;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == array[j]) {
-                if (i == j) {
-                    return true;
-                }
-            } else {
-                return false;
-            }
-            j--;
-        }
-
-        // Ваше решение
-        return false;
-    }
 
     private static boolean isPalindrome(String text) {
-        char[] array = text.toCharArray();
+        String strippedText = text.strip().toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
 
-        int j = array.length - 1;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == array[j]) {
-                if (i == j) {
-                    return true;
-                }
-            } else {
-                return false;
-            }
-            j--;
+        if(strippedText.isEmpty()) {
+            return false;
+        }
+        if (strippedText.length() == 1) {
+            return true;
+        }
+        if (strippedText.length() == 2 && strippedText.substring(0,1).equals(strippedText.substring(1,2))) {
+            return true;
         }
 
-        // Ваше решение
-        return false;
+        String part1 = strippedText.substring(0,strippedText.length()/2).strip().toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+        String part2 = strippedText.substring(strippedText.length()/2 + strippedText.length()%2).strip().toLowerCase();
+        char[] chars = part2.toCharArray();
+        char[] reversed = new char[chars.length];
+        int j = 0;
+        for (int i = part2.length() - 1; i >= 0; i--) {
+            reversed[j] = chars[i];
+            j++;
+        }
+        return part1.equals(String.valueOf(reversed));
     }
+
     public static void main(String[] args) throws IOException{
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String text = reader.readLine();

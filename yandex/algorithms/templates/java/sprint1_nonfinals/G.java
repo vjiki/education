@@ -6,9 +6,29 @@ import java.io.InputStreamReader;
 public class G {
 
     private static String getBinaryNumber(int n) {
-        // Ваше решение
-        return "";
+        if ( n > 10000 || n < 0) {
+            return "";
+        }
+
+        int bitCheck = 1;
+        boolean skip = true;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 13; i >=0; i--) {
+            bitCheck = 1 << i;
+            if ((n & bitCheck) > 0) {
+                sb.append("1");
+                skip = false;
+            } else {
+                if(!skip) {
+                    sb.append("0");
+                }
+            }
+        }
+
+        return sb.toString();
     }
+
     public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             int n = readInt(reader);
