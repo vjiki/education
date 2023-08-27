@@ -7,6 +7,7 @@ public class L {
 
     private static char getExcessiveLetter(String s, String t) {
         // Ваше решение
+        return 'a';
     }
 
     public static void main(String[] args) throws IOException {

@@ -13,6 +13,15 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/yandex/algorithms/excs1" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../dev/gradle-8.1.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/yandex/algorithms/excs1" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/yandex/algorithms/inputparams" />
         <option name="gradleHome" value="" />
         <option name="modules">

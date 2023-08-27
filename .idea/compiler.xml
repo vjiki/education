@@ -46,6 +46,7 @@
     <bytecodeTargetLevel>
       <module name="collections-cout-words" target="17" />
       <module name="employee-catalog" target="17" />
+      <module name="exsc1" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

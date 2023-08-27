@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class A {
 
     private static int evaluateFunction(int a, int b, int c, int x) {
-        // Ваше решение
+        return a*x*x + b*x + c;
     }
 
     public static void main(String[] args) {

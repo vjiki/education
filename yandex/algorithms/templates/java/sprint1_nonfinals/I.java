@@ -7,6 +7,7 @@ public class I {
 
     private static boolean isPowerOfFour(int n) {
         // Ваше решение
+        return false;
     }
 
     public static void main(String[] args) throws IOException {
