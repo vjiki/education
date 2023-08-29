@@ -1,23 +1,27 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class K {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+public class KTest {
     private static List<Integer> getSum(List<Integer> numberList, int k) {
 
         char[] chars = String.valueOf(k).toCharArray();
         int indexK = chars.length -1;
         List<Integer> result = new ArrayList<>();
 
+
+//        for (int i = chars.length -1; i >= 0; i--) {
+//            System.out.println(String.valueOf(chars[i]));
+//
+//        }
+
         int extraSum = 0;
         for (int i = numberList.size() -1; i >= 0; i--) {
+//            System.out.println(String.valueOf(numberList.get(i)));
             if (indexK >= 0) {
                 int sum = numberList.get(i) + Integer.parseInt(String.valueOf(chars[indexK]))  + extraSum;
                 char[] sumChars = String.valueOf(sum).toCharArray();
@@ -41,27 +45,21 @@ public class K {
         return result;
     }
 
-    public static void main(String[] args) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
-            int numberLength = readInt(reader);
-            List<Integer> numberList = readList(reader);
-            int k = readInt(reader);
-            List<Integer> sum = getSum(numberList, k);
-            for (int elem : sum) {
-                writer.write(elem + " ");
-            }
-        }
+    @Test
+    void successTest1() {
+        assertEquals(List.of(1, 2, 3, 4), getSum(List.of(1,2,0,0), 34));
     }
 
-    private static List<Integer> readList(BufferedReader reader) throws IOException {
-        return Arrays.asList(reader.readLine().split(" "))
-                .stream()
-                .map(elem -> Integer.parseInt(elem))
-                .collect(Collectors.toList());
+    @Test
+    void successTest2() {
+        assertEquals(List.of(1, 1, 2), getSum(List.of(9, 5), 17));
     }
 
-    private static int readInt(BufferedReader reader) throws IOException {
-        return Integer.parseInt(reader.readLine());
+    @Test
+    void successTest3() {
+        assertEquals(List.of(7, 9, 9, 4), getSum(List.of(7, 9, 9 , 1), 3));
     }
+
+    // 1 4 2 7 5 1 7 9 7 9 0 8 6 9 5 9 8 6 6 2 0 1 1 6 2 1 2 8 7 2 6 9 8 4 9 2 6 1 0 9
+    // 1 4 2 7 5 1 7 9 7 9 0 8 6 9 5 9 8 6 6 2 0 1 1 6 2 1 2 8 7 2 6 9 8 4 9 2 6 1 7 2
 }
