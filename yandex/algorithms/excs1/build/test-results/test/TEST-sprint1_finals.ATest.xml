@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sprint1_finals.ATest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-09-04T17:58:39" hostname="RSM4315" time="0.031">
+  <properties/>
+  <testcase name="successTest1()" classname="sprint1_finals.ATest" time="0.019"/>
+  <testcase name="successTest2()" classname="sprint1_finals.ATest" time="0.001"/>
+  <testcase name="successTest3()" classname="sprint1_finals.ATest" time="0.0"/>
+  <testcase name="successTest4()" classname="sprint1_finals.ATest" time="0.001"/>
+  <testcase name="successTest5()" classname="sprint1_finals.ATest" time="0.001"/>
+  <testcase name="successTest6()" classname="sprint1_finals.ATest" time="0.001"/>
+  <testcase name="successTest7()" classname="sprint1_finals.ATest" time="0.001"/>
+  <system-out><![CDATA[[0, 1, 2, 1, 0]
+[0, 1, 2, 1, 0]
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5]
+[1, 0, 1, 1, 0, 1, 1, 0, 1]
+[1, 0, 1, 1, 0, 1, 1, 0, 1]
+[0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]
+[0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]
+[5, 4, 3, 2, 1, 0]
+[5, 4, 3, 2, 1, 0]
+[3, 2, 1, 0, 1, 2]
+[3, 2, 1, 0, 1, 2]
+[1, 0, 1, 2, 3, 4]
+[1, 0, 1, 2, 3, 4]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

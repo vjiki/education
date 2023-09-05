@@ -1,23 +1,28 @@
-/*
-Comment it before submitting
-class Node<V> {  
-    public V value;  
-    public Node<V> next;  
- 
-    public Node(V value, Node<V> next) {  
-        this.value = value;  
-        this.next = next;  
-    }  
+// <template>
+class Node<V> {
+    public V value;
+    public Node<V> next;
+
+    public Node(V value, Node<V> next) {
+        this.value = value;
+        this.next = next;
+    }
 }
-*/
+// <template>
 
 public class Solution {
     public static void solution(Node<String> head) {
-        // Your code
-        // ヽ(´▽`)/
+        Node<String> currentNode = head;
+        StringBuilder output_buffer = new StringBuilder();
+
+        while (currentNode != null) {
+            output_buffer.append(currentNode.value).append("\n");
+            currentNode = currentNode.next;
+        }
+        System.out.println(output_buffer);
     }
 
-    private static void test() {
+    public static void test() {
         Node<String> node3 = new Node<>("node3", null);
         Node<String> node2 = new Node<>("node2", node3);
         Node<String> node1 = new Node<>("node1", node2);

@@ -1,20 +1,28 @@
-/*
-Comment it before submitting
-class Node<V> {  
-    public V value;  
-    public Node<V> next;  
- 
-    public Node(V value, Node<V> next) {  
-        this.value = value;  
-        this.next = next;  
-    }  
+// <template>
+class Node<V> {
+    public V value;
+    public Node<V> next;
+
+    public Node(V value, Node<V> next) {
+        this.value = value;
+        this.next = next;
+    }
 }
-*/
+// <template>
 
 public class Solution {
     public static int solution(Node<String> head, String elem) {
-        // Your code
-        // ヽ(´▽`)/
+        Node<String> currentNode = head;
+        int idx = 0;
+        while (currentNode.next != null) {
+            if (currentNode.value.equals(elem)) {
+                return idx;
+            }
+            currentNode = currentNode.next;
+            idx++;
+        }
+
+        return -1;
     }
 
     private static void test() {

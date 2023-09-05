@@ -1,17 +1,16 @@
-/*
-Comment it before submitting
-class Node<V> {  
-    public V value;  
-    public Node<V> next;  
-    public Node<V> prev;  
- 
-    public Node(V value, Node<V> next, Node<V> prev) {  
-        this.value = value;  
-        this.next = next;  
-        this.prev = prev;  
-    }  
+// <template>
+class Node<V> {
+    public V value;
+    public Node<V> next;
+    public Node<V> prev;
+
+    public Node(V value, Node<V> next, Node<V> prev) {
+        this.value = value;
+        this.next = next;
+        this.prev = prev;
+    }
 }
-*/
+// <template>
 
 public class Solution {
     public static Node<String> solution(Node<String> head) {

@@ -1,12 +1,11 @@
-// https://contest.yandex.ru/contest/22450/run-report/90053684/
+// https://contest.yandex.ru/contest/22450/run-report/90082374/
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class FinalA {
 
@@ -35,47 +34,32 @@ public class FinalA {
   static int[] getDistanceBetweenHouses(int[] housesLine) {
 
     int[] distanceBetweenHousesArray = new int[housesLine.length];
-    List<Integer> indexesOfZeros = new ArrayList<>();
+
+    int counter = housesLine.length;
 
     for (int i = 0; i < housesLine.length; i++) {
       if (housesLine[i] == 0) {
         distanceBetweenHousesArray[i] = 0;
-        indexesOfZeros.add(i);
+        counter = 0;
       } else {
-        distanceBetweenHousesArray[i] = housesLine.length - 1;
+        counter++;
+        distanceBetweenHousesArray[i] = counter;
       }
     }
 
-    if (indexesOfZeros.size() == 1) {
-      int zeroIndex = indexesOfZeros.get(0);
-      for (int i = 0; i < housesLine.length; i++) {
-        if (housesLine[i] != 0) {
-          distanceBetweenHousesArray[i] = Math.abs(i - zeroIndex);
-        }
-      }
-    } else {
-      int indexLeft = 0;
-      int indexRight = 1;
-      int countZeroes = 0;
+    counter = housesLine.length;
 
-      for (int i = 0; i < housesLine.length; i++) {
-        if (housesLine[i] != 0) {
-          int zeroIndexLeft = indexesOfZeros.get(indexLeft);
-          int zeroIndexRight = indexesOfZeros.get(indexRight);
-          int distanceLeft = Math.abs(i - zeroIndexLeft);
-          int distanceRight = Math.abs(i - zeroIndexRight);
-          distanceBetweenHousesArray[i] = Math.min(distanceLeft, distanceRight);
-        } else {
-          countZeroes++;
-          if (countZeroes >= 2) {
-            if (indexRight < indexesOfZeros.size() -1) {
-              indexLeft++;
-              indexRight++;
-            }
-          }
+    for (int i = housesLine.length - 1; i >= 0; i--) {
+      if (housesLine[i] == 0) {
+        counter = 0;
+      } else {
+        counter++;
+        if (counter < distanceBetweenHousesArray[i]) {
+          distanceBetweenHousesArray[i] = counter;
         }
       }
     }
+
     return distanceBetweenHousesArray;
   }
 }

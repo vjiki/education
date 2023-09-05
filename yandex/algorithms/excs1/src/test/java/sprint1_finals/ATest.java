@@ -1,6 +1,5 @@
 package sprint1_finals;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -153,8 +152,7 @@ public class ATest {
     int minDistanceRight = 1;
     int secondIndex = housesLine.length - 1;
 
-
-    for (int i = housesLine.length -2; i >= 0; i--) {
+    for (int i = housesLine.length - 2; i >= 0; i--) {
       if (housesLine[i] == 0) {
         distanceBetweenHousesArrayReverse[i] = 0;
         for (int j = secondIndex; j > i; j--) {
@@ -172,13 +170,14 @@ public class ATest {
     System.out.println(Arrays.toString(distanceBetweenHousesArrayReverse));
 
     for (int i = 0; i < housesLine.length; i++) {
-      distanceBetweenHousesArray[i] = Math.min(distanceBetweenHousesArrayDirect[i], distanceBetweenHousesArrayReverse[i]);
+      distanceBetweenHousesArray[i] = Math.min(distanceBetweenHousesArrayDirect[i],
+          distanceBetweenHousesArrayReverse[i]);
     }
 
     return distanceBetweenHousesArray;
   }
 
-  int[] getDistanceBetweenHouses(int[] housesLine) {
+  int[] getDistanceBetweenHousesV2(int[] housesLine) {
 
     int[] distanceBetweenHousesArray = new int[housesLine.length];
     List<Integer> indexesOfZeros = new ArrayList<>();
@@ -215,7 +214,7 @@ public class ATest {
         } else {
           countZeroes++;
           if (countZeroes >= 2) {
-            if (indexRight < indexesOfZeros.size() -1) {
+            if (indexRight < indexesOfZeros.size() - 1) {
               indexLeft++;
               indexRight++;
             }
@@ -227,6 +226,37 @@ public class ATest {
     return distanceBetweenHousesArray;
   }
 
+  int[] getDistanceBetweenHouses(int[] housesLine) {
+
+    int[] distanceBetweenHousesArray = new int[housesLine.length];
+
+    int counter = housesLine.length;
+
+    for (int i = 0; i < housesLine.length; i++) {
+      if (housesLine[i] == 0) {
+        distanceBetweenHousesArray[i] = 0;
+        counter = 0;
+      } else {
+        counter++;
+        distanceBetweenHousesArray[i] = counter;
+      }
+    }
+
+    counter = housesLine.length;
+
+    for (int i = housesLine.length - 1; i >= 0; i--) {
+      if (housesLine[i] == 0) {
+        counter = 0;
+      } else {
+        counter++;
+        if (counter < distanceBetweenHousesArray[i]) {
+          distanceBetweenHousesArray[i] = counter;
+        }
+      }
+    }
+
+    return distanceBetweenHousesArray;
+  }
 
   @Test
   void successTest1() {
@@ -239,10 +269,8 @@ public class ATest {
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
 
-
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
-
 
   @Test
   void successTest2() {
@@ -255,13 +283,12 @@ public class ATest {
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
 
-
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
 
 // 98 0 10 77 0 59 28 0 94
 
-  // 1 0 1 1 0 1 1 0 1
+// 1 0 1 1 0 1 1 0 1
 
   @Test
   void successTest3() {
@@ -274,11 +301,10 @@ public class ATest {
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
 
-
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
 
-  // 0 3 41 0 0 0 0 0 49 0 0 56 0 88
+// 0 3 41 0 0 0 0 0 49 0 0 56 0 88
 
   @Test
   void successTest4() {
@@ -291,10 +317,8 @@ public class ATest {
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
 
-
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
-
 
   @Test
   void successTest5() {
@@ -306,7 +330,6 @@ public class ATest {
 
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
-
 
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
@@ -321,7 +344,6 @@ public class ATest {
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
 
-
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
 
@@ -334,7 +356,6 @@ public class ATest {
 
     System.out.println(Arrays.toString(expectedDistanceArray));
     System.out.println(Arrays.toString(result));
-
 
     assertTrue(Arrays.equals(expectedDistanceArray, result));
   }
