@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 // <template>
 class Node<V> {
     public V value;
@@ -13,9 +16,43 @@ class Node<V> {
 // <template>
 
 public class Solution {
+
+    private static int getLastIndex(Node<String> head) {
+        Node<String> currentNode = head;
+        int length = 0;
+        while (currentNode.next != null) {
+            currentNode = currentNode.next;
+            length++;
+        }
+        return length;
+    }
+
+    private static Node<String> getNodeByIndex(Node<String> head, int idx) {
+        Node<String> node = head;
+        while (idx > 0) {
+            idx--;
+            node = node.next;
+        }
+
+        return node;
+    }
+
     public static Node<String> solution(Node<String> head) {
-        // Your code
-        // ヽ(´▽`)/
+
+        int lastIndex = getLastIndex(head);
+        List<Node<String>> listWithNewNodes = new ArrayList<>();
+        Node<String> newHead = new Node<>(getNodeByIndex(head, lastIndex).value, null, null);
+        listWithNewNodes.add(newHead);
+        int newIndex = 0;
+        while (lastIndex != 0) {
+            Node<String> currentElem = listWithNewNodes.get(newIndex);
+            lastIndex--;
+            Node<String> newElem = new Node<>(getNodeByIndex(head, lastIndex).value, null, currentElem);
+            listWithNewNodes.add(newElem);
+            currentElem.next = newElem;
+            newIndex++;
+        }
+        return newHead;
     }
 
     private static void test() {
