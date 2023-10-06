@@ -43,7 +43,6 @@ public class BiggestNumberFinal {
       if (firstNumber.equals(secondNumber)) {
         return 0;
       } else {
-
         if (firstNumber.length() == secondNumber.length()) {
           return Integer.compare(Integer.parseInt(secondNumber), Integer.parseInt(firstNumber));
         }
@@ -52,7 +51,6 @@ public class BiggestNumberFinal {
         String secondFirst = secondNumber + firstNumber;
 
         return Integer.compare(Integer.parseInt(secondFirst), Integer.parseInt(leftFirst));
-
       }
     }
   }

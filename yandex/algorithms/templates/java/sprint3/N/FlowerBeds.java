@@ -2,7 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.io.InputStreamReader;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 
 public class FlowerBeds {
@@ -10,7 +12,9 @@ public class FlowerBeds {
 
   static void removeDups(int[][] a)
   {
-    HashMap<Integer, Integer> mp = new HashMap<>();
+    HashMap<Integer, Integer> mp = new LinkedHashMap<>();
+
+    Arrays.sort(a, Comparator.comparingInt(c -> c[0]));
 
     for (int i = 0; i < a.length; ++i) {
       if (mp.get(a[i][0]) == null)
@@ -29,6 +33,12 @@ public class FlowerBeds {
 //    int[][] result = new int[allNumbers.length][];
 
 
+    // 0 55
+    // 42 89
+
+    // 2 3
+    // 6 10
+
 //    boolean swaps = true;
 //    while(swaps) {
 //      swaps = false;
@@ -36,7 +46,11 @@ public class FlowerBeds {
       int[] newPair = allNumbers[i];
       for (int j = 0; j < allNumbers.length; j++) {
         if ((newPair[0] >= allNumbers[j][0] && newPair[1] <= allNumbers[j][1]) ||
-            newPair[1] == allNumbers[j][0]) {
+            newPair[1] == allNumbers[j][0] || (newPair[1] >= allNumbers[j][0])
+        && newPair[1] <= allNumbers[j][1]) {
+          if (i == j) {
+            continue;
+          }
           newPair[0] = Math.min(newPair[0], allNumbers[j][0]);
           newPair[1] = Math.max(newPair[1], allNumbers[j][1]);
           allNumbers[i] = newPair;
