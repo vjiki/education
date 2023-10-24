@@ -1,23 +1,30 @@
 public class Solution {
     public static int treeSolution(Node head) {
-        // Your code
-        // “ヽ(´▽｀)ノ”
+        if (head.left != null && head.right != null) {
+            int maxChildren = Math.max(treeSolution(head.left), treeSolution(head.right));
+            return Math.max(head.value, maxChildren);
+        } else if (head.left != null) {
+            return Math.max(head.value, treeSolution(head.left));
+        } else if (head.right != null) {
+            return Math.max(head.value, treeSolution(head.right));
+        } else {
+            return head.value;
+        }
     }
 
-    /** Comment it before submitting
+    // <template>
     private static class Node {
-        int value;  
-        Node left;  
-        Node right;  
-    
-        Node(int value) {  
+        int value;
+        Node left;
+        Node right;
+
+        Node(int value) {
             this.value = value;
             this.left = null;
             this.right = null;
         }
     }
-    **/
-
+    // <template>
 
     private static void test() {
         Node node1 = new Node(1);

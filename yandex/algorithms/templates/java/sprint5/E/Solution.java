@@ -4,27 +4,27 @@ public class Solution {
         // “ヽ(´▽｀)ノ”
     }
 
-    /** Comment it before submitting
+    // <template>
     private static class Node {
-        int value;  
-        Node left;  
-        Node right;  
-    
-        Node(int value) {  
+        int value;
+        Node left;
+        Node right;
+
+        Node(int value) {
             this.value = value;
             this.left = null;
             this.right = null;
         }
 
-        Node(int value, Node left, Node right) {  
+        Node(int value, Node left, Node right) {
             this.value = value;
             this.left = left;
             this.right = right;
         }
     }
-    **/
-    
-    
+    // <template>
+
+
     private static void test() {
         Node node1 = new Node(1, null, null);
         Node node2 = new Node(4, null, null);

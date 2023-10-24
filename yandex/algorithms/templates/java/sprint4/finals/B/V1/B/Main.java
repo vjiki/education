@@ -1,4 +1,4 @@
-// https://contest.yandex.ru/contest/24414/run-report/93144157/
+// https://contest.yandex.ru/contest/24414/run-report/92874475/
 
 /*
 -- ПРИНЦИП РАБОТЫ --
@@ -43,9 +43,8 @@ public class Main {
   private static final String PUT = "put";
   private static final String DELETE = "delete";
   private static final String NONE = "None";
-  private static final int HASH_TABLE_MAX_SIZE = 200000; // при 100 000 не прохожу по времени,
-                                                         // при больших объемах видимо плохо данные по кэшу распределяются
-                                                         // так как у нас ключи и отридцательные и положительные
+  private static final int HASH_TABLE_MAX_SIZE = 1000000; // при 100 000 не прохожу по времени, там видимо поиск
+                                                          // без рехэширования долго идет так как все ячейки заняты
 
   public static void main(String[] args) throws IOException {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -96,8 +95,6 @@ class HashTable {
   private final Pair[] hashTable;
   private int size;
 
-  private final static String DELETED = "deleted";
-
   public HashTable(int maxSize) {
     max_size = maxSize;
     hashTable = new Pair[max_size];
@@ -109,7 +106,7 @@ class HashTable {
     if (hashTable[bucket] != null) {
       if (hashTable[bucket].key.equals(key)) {
         String value = hashTable[bucket].value;
-        hashTable[bucket] = new Pair(DELETED, null);
+        hashTable[bucket] = new Pair("deleted", null);
         size--;
         return value;
       } else {
@@ -117,7 +114,7 @@ class HashTable {
         while(hashTable[i] != null) {
           if (hashTable[i].key.equals(key)) {
             String value = hashTable[i].value;
-            hashTable[i] = new Pair(DELETED, null);
+            hashTable[i] = new Pair("deleted", null);
             size--;
             return value;
           }
@@ -138,26 +135,18 @@ class HashTable {
     if (hashTable[bucket] == null) {
       hashTable[bucket] = new Pair(key, value);
     } else {
-      int firstEmptyDeletedIndex = -1;
       int i = bucket;
       while(hashTable[i] != null) {
         if (hashTable[i].key.equals(key)) {
           hashTable[i].setValue(value);
           return true;
         }
-        if (DELETED.equals(hashTable[i].key) && firstEmptyDeletedIndex == -1) {
-          firstEmptyDeletedIndex = i;
-        }
         i++;
         if (i > max_size - 1) {
           i = 0;
         }
       }
-      if (firstEmptyDeletedIndex == -1) {
-        hashTable[i] = new Pair(key, value);
-      } else {
-        hashTable[firstEmptyDeletedIndex] = new Pair(key, value);
-      }
+      hashTable[i] = new Pair(key, value);
     }
 
     size++;
