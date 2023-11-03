@@ -1,20 +1,42 @@
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Solution {
     public static void printRange(Node root, int L, int R, BufferedWriter writer) throws IOException {
         // Your code
-        // “ヽ(´▽｀)ノ”
+        List<Integer> result = new ArrayList<>();
+        fillRange(root, L, R, result);
+
+        result.sort(null);
+        for (Integer i: result) {
+            writer.append(String.valueOf(i)).append(' ');
+        }
+
     }
 
-    /** Comment it before submitting
+    static void fillRange(Node root, int L, int R, List<Integer> result) {
+        if (root.getValue() >= L && root.getValue() <= R) {
+            result.add(root.getValue());
+        }
+        if (root.getRight() != null) {
+            fillRange(root.getRight(), L, R, result);
+        }
+        if (root.getLeft() != null) {
+            fillRange(root.getLeft(), L, R, result);
+        }
+    }
+
+
+    // <template>
     private static class Node {
-        private int value;  
-        private Node left;  
-        private Node right;  
-    
-        Node(Node left, Node right, int value) {  
+        private int value;
+        private Node left;
+        private Node right;
+
+        Node(Node left, Node right, int value) {
             this.left = left;
             this.right = right;
             this.value = value;
@@ -23,29 +45,29 @@ public class Solution {
         public int getValue() {
             return value;
         }
-    
+
         public Node getRight() {
             return right;
         }
-    
+
         public void setRight(Node right) {
             this.right = right;
         }
-    
+
         public Node getLeft() {
             return left;
         }
-    
+
         public void setLeft(Node left) {
             this.left = left;
         }
-    
+
         public void setValue(int value) {
             this.value = value;
         }
     }
-    **/
-    
+    // <template>
+
     private static void test() throws IOException{
         Node node1 = new Node(null, null, 2);
         Node node2 = new Node(null, node1, 1);

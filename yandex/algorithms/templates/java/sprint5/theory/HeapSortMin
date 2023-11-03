@@ -1,0 +1,17 @@
+   public static List<Integer> heapsort(List<Integer> array) {
+        // Создадим пустую бинарную кучу.
+        List<Integer> heap = new ArrayList<>();
+
+        // Вставим в неё по одному все элементы массива, сохраняя свойства кучи.
+        for (Integer item : array) {
+            heapAdd(heap, item);   // код для heapAdd можно посмотреть в прошлом уроке
+        }
+
+        // Будем извлекать из неё наиболее приоритетные элементы, удаляя их из кучи.
+        List<Integer> sortedArray = new ArrayList<>();
+        while (!heap.isEmpty()) {
+            int max = popMax(heap);
+            sortedArray.add(max);
+        }
+        return sortedArray;
+    }

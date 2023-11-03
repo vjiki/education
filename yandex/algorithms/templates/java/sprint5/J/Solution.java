@@ -1,16 +1,33 @@
 public class Solution {
     public static Node insert(Node root, int key) {
         // Your code
-        // “ヽ(´▽｀)ノ”
+        insert_node(root, key);
+        return root;
     }
 
-    /** Comment it before submitting
+    static void insert_node(Node root, int key) {
+        if (key < root.getValue()) {
+            if (root.getLeft() == null) {
+                root.setLeft(new Node(null, null,key));
+            } else {
+                insert_node(root.getLeft(), key);
+            }
+        } else {
+            if (root.getRight() == null) {
+                root.setRight(new Node(null, null, key));
+            } else {
+                insert_node(root.getRight(), key);
+            }
+        }
+    }
+
+    // <template>
     private static class Node {
-        private int value;  
-        private Node left;  
-        private Node right;  
-    
-        Node(Node left, Node right, int value) {  
+        private int value;
+        private Node left;
+        private Node right;
+
+        Node(Node left, Node right, int value) {
             this.left = left;
             this.right = right;
             this.value = value;
@@ -19,29 +36,29 @@ public class Solution {
         public int getValue() {
             return value;
         }
-    
+
         public Node getRight() {
             return right;
         }
-    
+
         public void setRight(Node right) {
             this.right = right;
         }
-    
+
         public Node getLeft() {
             return left;
         }
-    
+
         public void setLeft(Node left) {
             this.left = left;
         }
-    
+
         public void setValue(int value) {
             this.value = value;
         }
     }
-    **/
-    
+    // <template>
+
     private static void test() {
         Node node1 = new Node(null, null, 7);
         Node node2 = new Node(node1, null, 8);
