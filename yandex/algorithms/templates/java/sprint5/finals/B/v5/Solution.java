@@ -86,8 +86,8 @@ public class Solution {
         return root.getLeft();
       } else {
         getNewRoot(root, root.getLeft(), root);
-        root.setLeft(root.getLeft());
-        root.setRight(root.getRight());
+//        root.setLeft(root.getLeft());
+//        root.setRight(root.getRight());
         return root;
       }
     } else {
@@ -121,14 +121,14 @@ public class Solution {
         }
         return root;
       } else {
-        getNewRoot(nodeWithParent.getParent(), nodeWithParent.getNodeToRemove(), nodeWithParent.getNodeToRemove());
-        nodeWithParent.getNodeToRemove().setLeft(nodeWithParent.getNodeToRemove().getLeft());
-        if (nodeWithParent.getParent().getLeft() == nodeWithParent.getNodeToRemove()) {
-          nodeWithParent.getParent().setLeft(nodeWithParent.getNodeToRemove());
-        }
-        if (nodeWithParent.getParent().getRight() == nodeWithParent.getNodeToRemove()) {
-          nodeWithParent.getParent().setRight(nodeWithParent.getNodeToRemove());
-        }
+        getNewRoot(nodeWithParent.getNodeToRemove(), nodeWithParent.getNodeToRemove().getLeft(), nodeWithParent.getNodeToRemove());
+//        nodeWithParent.getNodeToRemove().setLeft(nodeWithParent.getNodeToRemove().getLeft());
+//        if (nodeWithParent.getParent().getLeft() == nodeWithParent.getNodeToRemove()) {
+//          nodeWithParent.getParent().setLeft(nodeWithParent.getNodeToRemove());
+//        }
+//        if (nodeWithParent.getParent().getRight() == nodeWithParent.getNodeToRemove()) {
+//          nodeWithParent.getParent().setRight(nodeWithParent.getNodeToRemove());
+//        }
         return root;
       }
     }
@@ -143,25 +143,36 @@ public class Solution {
     Node currentParent = parent;
     Node currentLeftNode = leftNode;
     boolean foundNewRoot = false;
+    boolean isRight = false;
     while (!foundNewRoot) {
       if (currentLeftNode.getLeft() == null && currentLeftNode.getRight() == null) {
-        currentParent.setRight(null);
+        if (isRight) {
+          currentParent.setRight(null);
+        } else {
+          currentParent.setLeft(null);
+        }
         foundNewRoot = true;
         root.setValue(currentLeftNode.getValue());
         currentLeftNode = null;
       } else if (currentLeftNode.getLeft() == null) {
         currentParent = currentLeftNode;
         currentLeftNode = currentLeftNode.getRight();
+        isRight = true;
       } else if (currentLeftNode.getRight() == null) {
         // TODO
-//        currentParent.setLeft(null);
-//        foundNewRoot = true;
-//        root.setValue(currentLeftNode.getValue());
-//        currentLeftNode = null;
-        currentParent = currentLeftNode;
-        currentLeftNode = currentLeftNode.getLeft();
+        if (isRight) {
+          currentParent.setRight(null);
+        } else {
+          currentParent.setLeft(null);
+        }
+        foundNewRoot = true;
+        root.setValue(currentLeftNode.getValue());
+        currentLeftNode = null;
+//        currentParent = currentLeftNode;
+//        currentLeftNode = currentLeftNode.getLeft();
       } else {
         currentParent = currentLeftNode;
+        isRight = true;
         currentLeftNode = currentLeftNode.getRight();
       }
     }
@@ -277,24 +288,24 @@ public class Solution {
   //10 99 -1 -1
   //41
 
-//  public static void main(String[] args) {
-//    Node node10 = new Node(null, null, 99);
-//    Node node9 = new Node(null, null, 72);
-//    Node node8 = new Node(node9, node10, 91);
-//    Node node7 = new Node(null, null, 50);
-//    Node node6 = new Node(null, null, 32);
-//    Node node5 = new Node(null, node6, 29);
-//    Node node4 = new Node(null, null, 11);
-//    Node node3 = new Node(node7, node8, 65);
-//    Node node2 = new Node(node4, node5, 20);
-//    Node node1 = new Node(node2, node3, 41);
-//    Node newHead = remove(node1, 41);
-//    System.out.println(newHead.getValue());
-//    System.out.println(newHead.getLeft().getValue());
-//    System.out.println(newHead.getRight().getValue());
-//    System.out.println(newHead.getLeft().getRight().getValue());
-//    System.out.println(newHead.getLeft().getRight().getRight());
-//  }
+  public static void main(String[] args) {
+    Node node10 = new Node(null, null, 99);
+    Node node9 = new Node(null, null, 72);
+    Node node8 = new Node(node9, node10, 91);
+    Node node7 = new Node(null, null, 50);
+    Node node6 = new Node(null, null, 32);
+    Node node5 = new Node(null, node6, 29);
+    Node node4 = new Node(null, null, 11);
+    Node node3 = new Node(node7, node8, 65);
+    Node node2 = new Node(node4, node5, 20);
+    Node node1 = new Node(node2, node3, 41);
+    Node newHead = remove(node1, 41);
+    System.out.println(newHead.getValue());
+    System.out.println(newHead.getLeft().getValue());
+    System.out.println(newHead.getRight().getValue());
+    System.out.println(newHead.getLeft().getRight().getValue());
+    System.out.println(newHead.getLeft().getRight().getRight());
+  }
 
 //  public static void main(String[] args) {
 //    Node node10 = new Node(null, null, 99);
@@ -389,8 +400,8 @@ public class Solution {
 //    System.out.println(newHead.getValue());
 //    System.out.println(newHead.getLeft().getValue());
 //    System.out.println(newHead.getRight().getValue());
-//    System.out.println(newHead.getRight().getLeft().getValue());
-//    System.out.println(newHead.getRight().getRight());
+//    System.out.println(newHead.getRight().getLeft());
+//    System.out.println(newHead.getRight().getRight().getValue());
 //
 //  }
 
@@ -456,52 +467,67 @@ public class Solution {
   //    else:
   //        print('OK: null')
 
-  public static void main(String[] args) throws IOException {
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-      int nodesSize = readInt(reader);
-
-      Node nodes[] = new Node[nodesSize];
-
-      for (int i = 0; i < nodesSize; i++) {
-        nodes[i] = new Node(null, null, -1);
-      }
-
-      for (int i = 0; i < nodesSize; i++) {
-        String[] nodeInfoLine = reader.readLine().split(" ");
-        Node left = Integer.parseInt(nodeInfoLine[2]) == -1 ? null : nodes[Integer.parseInt(nodeInfoLine[2]) - 1];
-        Node right = Integer.parseInt(nodeInfoLine[3]) == -1 ? null : nodes[Integer.parseInt(nodeInfoLine[3]) - 1];
-        nodes[i].setLeft(left);
-        nodes[i].setRight(right);
-        nodes[i].setValue(Integer.parseInt(nodeInfoLine[1]));
-      }
-
-      Node root = nodes[0];
-      Node newHead = nodes[0];
-
-//      for (int i = nodesSize-1; i >= 0; i--) {
-      for (int i = 0; i < nodesSize; i++) {
-        System.out.println(i);
-        if (nodes[i].getValue() == 494397512) {
-          newHead = remove(newHead, nodes[i].getValue());
-        } else {
-          newHead = remove(newHead, nodes[i].getValue());
-        }
-      }
-
-      System.out.println(newHead.getValue());
-      System.out.println(newHead.getLeft().getValue());
-      System.out.println(newHead.getRight().getValue());
+//  public static void main(String[] args) throws IOException {
+//    try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+//      int nodesSize = readInt(reader);
+//
+//      Node nodes[] = new Node[nodesSize];
+//
+//      for (int i = 0; i < nodesSize; i++) {
+//        nodes[i] = new Node(null, null, -1);
+//      }
+//
+//      for (int i = 0; i < nodesSize; i++) {
+//        String[] nodeInfoLine = reader.readLine().split(" ");
+//        Node left = Integer.parseInt(nodeInfoLine[2]) == -1 ? null : nodes[Integer.parseInt(nodeInfoLine[2]) - 1];
+//        Node right = Integer.parseInt(nodeInfoLine[3]) == -1 ? null : nodes[Integer.parseInt(nodeInfoLine[3]) - 1];
+//        nodes[i].setLeft(left);
+//        nodes[i].setRight(right);
+//        nodes[i].setValue(Integer.parseInt(nodeInfoLine[1]));
+//      }
+//
+//      Node root = nodes[0];
+//      Node newHead = nodes[0];
+//
+////      for (int i = nodesSize-1; i >= 0; i--) {
+//      for (int i = 0; i < nodesSize; i++) {
+//        System.out.println(i + " " + nodes[i].getValue());
+//        if (nodes[i].getValue() == 494397512 || nodes[i].getValue() == 494385698 || nodes[i].getValue() == 494395336) {
+//          print_LMR(newHead);
+//          newHead = remove(newHead, nodes[i].getValue());
+//          print_LMR(newHead);
+//        } else {
+//          //print_LMR(newHead);
+//          newHead = remove(newHead, nodes[i].getValue());
+//          //print_LMR(newHead);
+//        }
+//        System.out.println(i);
+//      }
+//
 //      System.out.println(newHead.getValue());
 //      System.out.println(newHead.getLeft().getValue());
 //      System.out.println(newHead.getRight().getValue());
+////      System.out.println(newHead.getValue());
+////      System.out.println(newHead.getLeft().getValue());
+////      System.out.println(newHead.getRight().getValue());
+//
+//
+//
+//    }
+//  }
 
-
-
-    }
-  }
-
-  private static int readInt(BufferedReader reader) throws IOException {
-    return Integer.parseInt(reader.readLine());
-  }
+//  private static int readInt(BufferedReader reader) throws IOException {
+//    return Integer.parseInt(reader.readLine());
+//  }
+//
+//  static void print_LMR(Node vertex) {
+//    if (vertex.getLeft() != null) {
+//      print_LMR(vertex.getLeft());
+//    }
+//    System.out.print(vertex.getValue() + " ");
+//    if (vertex.getRight() != null) {
+//      print_LMR(vertex.getRight());
+//    }
+//  }
 
 }
