@@ -1,4 +1,4 @@
-// https://contest.yandex.ru/contest/25070/run-report/98415767/
+// https://contest.yandex.ru/contest/25070/run-report/98853001/
 
 /*
 -- ПРИНЦИП РАБОТЫ --
@@ -16,23 +16,24 @@
 O(V+E) - как в DFS со списками смежности.
 
 -- ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ --
-O(E*V) - список смежности, где E - количество вершин, V - количество рёбер.
-
+O(E*V) - список смежности, где V - количество вершин, E - количество рёбер.
+O(V) - хранение массива цветов, где V - количество вершин.
 */
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
 class DFS {
-    private static final Map<Integer, ArrayList<Integer>> newMatrix = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
+        Map<Integer, ArrayList<Integer>> newMatrix = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             int n = readInt(reader);
@@ -63,9 +64,10 @@ class DFS {
                 }
             }
 
-            int[] color = new int[n];
+            Color[] colors = new Color[n];
+            Arrays.fill(colors, Color.WHITE);
             for (int i = 0; i < n; i++) {
-                if (isGraphCycled(i, color)) {
+                if (isGraphCycled(i, colors, newMatrix)) {
                     System.out.println("NO");
                     return;
                 }
@@ -75,28 +77,28 @@ class DFS {
         }
     }
 
-    static boolean isGraphCycled(int startPoint, int[] colors) {
+    static boolean isGraphCycled(int startPoint, Color[] colors, Map<Integer, ArrayList<Integer>> newMatrix) {
         Stack<Integer> planned = new Stack<>();
         planned.push(startPoint);
 
         planned.push(startPoint);
         while (!planned.isEmpty()) {
             int u = planned.pop();
-            if (colors[u] == 0) {
-                colors[u] = 1;
+            if (colors[u] == Color.WHITE) {
+                colors[u] = Color.GRAY;
                 planned.push(u);
-                List<Integer> outgoingEdges = outgoingEdges(u);
+                List<Integer> outgoingEdges = outgoingEdges(u, newMatrix);
                 if (outgoingEdges != null) {
                     for (int w : outgoingEdges) {
-                        if (colors[w] == 0) {
+                        if (colors[w] == Color.WHITE) {
                             planned.push(w);
-                        } else if (colors[w] == 1) {
+                        } else if (colors[w] == Color.GRAY) {
                             return true;
                         }
                     }
                 }
-            } else if (colors[u] == 1) {
-                colors[u] = 2;
+            } else if (colors[u] == Color.GRAY) {
+                colors[u] = Color.BLACK;
             }
         }
         return false;
@@ -106,8 +108,14 @@ class DFS {
         return Integer.parseInt(reader.readLine());
     }
 
-    private static ArrayList<Integer> outgoingEdges(int v) {
+    private static ArrayList<Integer> outgoingEdges(int v, Map<Integer, ArrayList<Integer>> newMatrix) {
         // Реализация получения исходящих рёбер для вершины v
         return newMatrix.get(v);
     }
+}
+
+enum Color {
+    WHITE,
+    GRAY,
+    BLACK;
 }
