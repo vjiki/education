@@ -1,0 +1,154 @@
+/**
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1]. */
+
+public int[] twoSum(int[] nums, int target) {
+
+}
+
+class Main {
+
+    public static void main(String[] args) {
+        multiply(2, 3);
+
+        multiply(-2, 3);
+        multiply(2, -3);
+        multiply(-2, -3);
+    }
+
+    private static int multiply(int a, int b) {
+        int res = 0;
+        int absA = Math.abs(a);
+        for(int i = 0; i < Math.abs(b); i++) {
+            res += absA;
+        }
+        if ((a > 0 && b < 0) || (a<0 && b > 0)) {
+               res = 0 - res;
+        }
+        return res;
+    }
+
+}
+
+
+import org.reflections.*;
+import java.util.*;
+import java.util.stream.*;
+import java.util.Scanner;
+
+import static org.reflections.scanners.Scanners.*;
+
+public class Main {
+
+
+  DocumentProvider getProvider(String inp) {
+
+
+
+    return switch(inp) : {
+
+
+      case "CONSENT": return
+    }
+  }
+
+
+  public static void main(String[] args) throws Exception {
+    Scanner input = new Scanner(System.in);
+    String inp = input.next();
+    System.out.println("Enter document type: " + inp);
+    // ... call test code here?
+
+    Map<String, DocumentProvider> documentProviderMap = new HashMap<>();
+
+
+    for (DocumentProvider docProv : getDocumentProviders()) {
+      documentProviderMap.put(docProv.getProviderName(), docProv);
+    }
+
+    documentProviderMap.get(inp).test();
+
+  }
+
+  // ... some code here?
+
+  private static List<DocumentProvider> getDocumentProviders() {
+    Reflections reflections = new Reflections(Main.class.getProtectionDomain().getCodeSource().getLocation());
+    Set<Class<?>> subTypes = reflections.get(SubTypes.of(DocumentProvider.class).asClass());
+    return subTypes.stream().map(subType -> {
+      try {
+        return (DocumentProvider) subType.getConstructor().newInstance();
+      } catch (Exception ex) {
+        throw new RuntimeException(ex);
+      }
+    }).collect(Collectors.toList());
+  }
+
+}
+
+
+
+
+apply plugin:'application'
+mainClassName = 'Main'
+
+run { standardInput = System.in }
+sourceSets { main { java { srcDir './' } } }
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // add dependencies here like following
+    // implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    // ... some dependencies here?
+}
+
+
+
+
+interface DocumentProvider {
+
+  String getProviderName();
+
+  void test();
+}
+
+
+
+
+public class ConsentProvider implements DocumentProvider {
+
+  public String getProviderName() {
+    return "CONSENT";
+  }
+
+  public void test() {
+    System.out.println("consents call");
+  }
+}
+
+
+
+public class ContractProvider implements DocumentProvider {
+
+  // ... some code here?
+
+  public void test() {
+    System.out.println("contract call");
+  }
+}
+
+
