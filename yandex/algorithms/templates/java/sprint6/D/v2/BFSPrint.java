@@ -6,13 +6,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class BFSPrint {
 
-  static void BFS(int s, StringBuilder sb, List<TreeSet<Integer>> graph) {
+  static void BFS(int s, List<TreeSet<Integer>> graph) {
+    StringBuilder sb = new StringBuilder();
     // Создадим очередь вершин и положим туда стартовую вершину.
     Queue<Integer> planned = new LinkedList<>();
     Set<Integer> visited = new HashSet<>();
@@ -28,11 +30,11 @@ public class BFSPrint {
           }
       }
     }
+    System.out.println(sb);
   }
 
   public static void main(String[] args) throws IOException {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-
       int[] firstLine = readArray(reader);
       int n = firstLine[0];
       int m = firstLine[1];
@@ -50,9 +52,7 @@ public class BFSPrint {
       }
       int s = readInt(reader);
 
-      StringBuilder sb = new StringBuilder();
-      BFS(s, sb, graph);
-      System.out.println(sb);
+      BFS(s, graph);
     }
   }
 

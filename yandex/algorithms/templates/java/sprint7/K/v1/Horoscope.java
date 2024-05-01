@@ -171,9 +171,6 @@ public class Horoscope {
     }
 
     private static int[] readArray(BufferedReader reader) throws IOException {
-//        return Arrays.stream(reader.readLine().split(" "))
-//                .map(Integer::parseInt)
-//                .mapToInt(Integer::intValue).toArray();
         String[] rows = reader.readLine().split(" ");
         int[] array = new int[rows.length+1];
         for (int i = 1; i < rows.length+1; i++) {
