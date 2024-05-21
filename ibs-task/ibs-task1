@@ -1,0 +1,41 @@
+		Объединить 2 листа и отсортировать их (без stream api)
+
+		List<Integer> list1 = new ArrayList<>();
+		list1.add(2);
+		list1.add(8);
+		list1.add(6);
+		list1.add(5);
+		List<Integer> list2 = new ArrayList<>();
+		list2.add(0);
+		}
+
+
+		//List<Integer> list3 = new ArrayList<>();
+
+		if (list1.isEmpty() && list1.isEmpty()) {
+			System.out.println(list3.toString());
+		} else if (list1.get(0) < list2.get(0)) {
+			list3.add(list1.get(0));
+			list3.add(list2.get(0));
+		} else {
+			list3.add(list2.get(0));
+			list3.add(list1.get(0));
+		}
+		//System.out.println(list3.toString());
+
+		for (Integer i : list1) {
+			if (i < list2.get(0)) {
+				list3.add(i);
+			} else {
+				list3.add(list2.get(0));
+			}
+		}
+		//System.out.println(list3.toString());
+	}
+
+
+			//2 обьединенных массива
+		List<Integer> list3 = new ArrayList<>();
+		if (list1 != null && list2 != null) {
+			list1.addAll(list2);
+			list3 = list1.stream().sorted().collect(Collectors.toList());

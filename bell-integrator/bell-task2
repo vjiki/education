@@ -1,0 +1,53 @@
+
+class GrandParent {
+	{		System.out.println("Block GrandParent");	}
+
+	public GrandParent() {
+		System.out.println("GrandParent");
+	}
+
+	public GrandParent(Parent a) {
+		System.out.println("GrandParent(Parent a)");
+	}
+
+	public GrandParent(Child a) {
+		System.out.println("GrandParent(Child a)");
+	}
+
+}
+	class Parent extends GrandParent {
+		{			System.out.println("Block Parent");		}
+
+		public Parent() {
+			System.out.println("Parent");
+		}
+
+		public Parent(Child a) {
+			System.out.println("Parent(Child a)");
+		}
+
+		public Parent(GrandParent a) {
+			System.out.println("Parent(GrandParent a)");
+		}
+	}
+
+	class Child extends Parent {
+		{			System.out.println("Block Child");		}
+
+		public Child() {
+			System.out.println("Child");
+		}
+
+		public Child(Parent a) {
+			System.out.println("Child(ParentChild a)");
+		}
+
+		public Child(GrandParent a) {
+			System.out.println("Child(Parent a)");
+		}
+
+	}
+
+
+	что выведет
+	new Parent(new Child())

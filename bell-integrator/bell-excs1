@@ -1,0 +1,14 @@
+
+//проверить что строка полиндром
+
+        String sss = "12321";
+
+        StringBuffer sb = new StringBuffer(sss);
+        String ss2 = sb.reverse().toString();
+
+        if (sss.equals(ss2)) {
+            System.out.println("Polindrom");
+        } else {
+            System.out.println("Is not Polindrom");
+        }
+

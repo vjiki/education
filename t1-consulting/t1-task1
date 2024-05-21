@@ -1,0 +1,66 @@
+рассказать что тут не так
+
+
+
+
+
+package org.example;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class PersonService {
+
+    @Autowired
+    public PersonRepository personRepository;
+
+    @Autowired
+    public DiscountService discountService;
+
+    @Autowired
+    public NotificationService notificationService;
+
+    @Autowired
+    public BalanceRestClient balanceRestClient;
+
+    @Transactional
+    public void processPayment(Person person, Payment payment) {
+        Balance balance = balanceRestClient.getPersonBalance(person);
+
+        try {
+            if (payment.getAmount() < 50) {
+                Discount lowDiscount = discountService.getLowDiscount();
+                payment = payment.applyDiscount(lowDiscount);
+                if (balance.gte(payment)) {
+                    personRepository.applyPayment(payment);
+                }
+            }
+
+            if (payment.getAmount() > 50 && payment.getAmount() < 100) {
+                Discount medDiscount = discountService.getMediumDiscount();
+                payment = payment.applyDiscount(medDiscount);
+                if (balance.gte(payment)) {
+                    personRepository.applyPayment(payment);
+                }
+            }
+
+            if (payment.getAmount() >= 100) {
+                Discount highDiscount = discountService.getHighDiscount();
+                payment = payment.applyDiscount(highDiscount);
+                if (balance.gte(payment)) {
+                    personRepository.applyPayment(payment);
+                }
+            }
+            notificationService.send(new Notification("Successful transaction"));
+        } catch (Throwable t) {
+            // catch any transaction exception
+            notificationService.send(new Notification("Failed to process payment"));
+        }
+    }
+}
+
+
+
+

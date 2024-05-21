@@ -1,0 +1,35 @@
+
+что вместо ??? может быть
+public class fffff {
+	public class Task {
+	    public static class A {
+	        public A methodA(A a) throws IOException {
+	            return null;
+	        }
+
+	        public A[] methodArrayA(A[] a) throws IOException {
+	            return null;
+	        }
+
+	        public List<A> methodListA(List<A> a) throws IOException {
+	            return null;
+	        }
+	    }
+
+	    public static class B extends A {
+	        @Override
+	        public ? methodA(? a) ? {
+	            return null;
+	        }
+
+	        @Override
+	        public ? methodArrayA(? a) ? {
+	            return null;
+	        }
+
+	        @Override
+	        public ? methodListA(? a) ? {
+	            return null;
+	        }
+	    }
+}
