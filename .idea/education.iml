@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/templates/java/sprint6/D/v2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/templates/java/sprint7/K/v2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/templates/java/sprint0" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/yandex/interview2023/topKFrequentWords" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
