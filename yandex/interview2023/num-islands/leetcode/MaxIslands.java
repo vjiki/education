@@ -37,7 +37,54 @@ grid[i][j] is '0' or '1'.
 
 
 class MaxIslands {
-  public int numIslands(char[][] grid) {
 
+  public static void main(String[] args) {
+
+    char[][] grid = new char[][]{
+        {'1', '1', '0', '0', '0'},
+        {'1', '1', '0', '0', '0'},
+        {'0', '0', '1', '0', '0'},
+        {'0', '0', '0', '1', '1'}};
+
+//    for (int i = 0; i < grid.length; i++) {
+//      for (int j = 0; j < grid[i].length; j++) {
+//        System.out.println(grid[i][j]);
+//      }
+//    }
+
+    System.out.println(numIslands(grid));
   }
+
+  // corner cases!!
+
+  public static int numIslands(char[][] grid) {
+
+    int count = 0;
+    for (int i = 0; i < grid.length; i++) {
+      for (int j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] == '1') {
+          updateField(grid, i, j);
+          count++;
+        }
+      }
+    }
+
+    return count;
+  }
+
+  public static void updateField(char[][] grid, int i, int j) {
+    if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] == '0' || grid[i][j] == '*') {
+      return;
+    }
+
+    if (grid[i][j] == '1') {
+      grid[i][j] = '*';
+    }
+
+    updateField(grid, i + 1, j);
+    updateField(grid, i, j + 1);
+    updateField(grid, i - 1, j);
+    updateField(grid, i, j - 1);
+  }
+
 }

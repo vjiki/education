@@ -33,7 +33,7 @@ void numIslandsAndMaxIsland(char[][] map, int n, int m) {
       char elem = map[i][j];
       if (elem == '#') {
         amountOfIslands++;
-        int max = updateMap(map, i, j, );
+        int max = updateMap(map, i, j);
         if (max > maxIslandSize) {
           maxIslandSize = max;
         }
