@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/templates/java/sprint7/K/v2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/templates/java/sprint0" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/udemy/multithreading/homework/exsc2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/udemy/multithreading/daemon-test" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
