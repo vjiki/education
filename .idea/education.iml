@@ -8,17 +8,18 @@
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/solutions/sprint3/finals/D" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/solutions/sprint6/D/v2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/solutions/sprint7/K/v2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/natera/annotations" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/coursera/module-0/algs4.jar!/" />
+          <root url="jar://$MODULE_DIR$/coursera/algs4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/coursera/module-0/algs4.jar!/" />
+          <root url="jar://$MODULE_DIR$/coursera/algs4.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
