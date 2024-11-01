@@ -3,51 +3,46 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="oop-basics-triangle" />
-        <module name="sql-queries" />
-        <module name="row-mapper" />
-        <module name="java-collections-text-analizer" />
-        <module name="set-mapper" />
-        <module name="java-collections-wildcards-task2" />
-        <module name="java-collections-wildcards-task1" />
-        <module name="java-data-handling-template-big-numbers" />
-        <module name="scheduling-assistant" />
-        <module name="oop-basics-figures" />
-        <module name="thread-factoring" />
-        <module name="dao" />
-        <module name="meet-autocode" />
-        <module name="servlets-expression-calculator" />
-        <module name="java-basics-template" />
-        <module name="java-data-handling-template-regexp" />
-        <module name="oop-basics-segments" />
-        <module name="concurrent-tic-tac-toe" />
-        <module name="java-collections-multimap" />
-        <module name="java-data-handling-template-text" />
-        <module name="risky-calls" />
-        <module name="bst-pretty-print" />
-        <module name="design-patterns" />
-        <module name="java-exceptions-template" />
-        <module name="java-data-handling-template-dates" />
-        <module name="java-design-template" />
-        <module name="collections-count-words" />
-        <module name="java-collections-iterator" />
-        <module name="java-data-handling-files" />
-        <module name="java-collections-generics" />
-        <module name="rectangular-spliterator" />
-        <module name="service" />
-        <module name="streams-pipelines" />
-        <module name="streams-count-words" />
-        <module name="employees-catalogue" />
-      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="bst-pretty-print" target="11" />
+      <module name="collections-count-words" target="11" />
       <module name="collections-cout-words" target="17" />
+      <module name="concurrent-tic-tac-toe" target="11" />
+      <module name="dao" target="11" />
+      <module name="design-patterns" target="11" />
       <module name="employee-catalog" target="17" />
+      <module name="employees-catalogue" target="11" />
       <module name="exsc1" target="17" />
+      <module name="java-basics-template" target="1.8" />
+      <module name="java-collections-generics" target="1.8" />
+      <module name="java-collections-iterator" target="1.8" />
+      <module name="java-collections-multimap" target="1.8" />
+      <module name="java-collections-text-analizer" target="1.8" />
+      <module name="java-collections-wildcards-task1" target="1.8" />
+      <module name="java-collections-wildcards-task2" target="1.8" />
+      <module name="java-data-handling-files" target="1.8" />
+      <module name="java-data-handling-template-big-numbers" target="1.8" />
+      <module name="java-data-handling-template-dates" target="1.8" />
+      <module name="java-data-handling-template-regexp" target="1.8" />
+      <module name="java-data-handling-template-text" target="1.8" />
+      <module name="java-design-template" target="1.8" />
+      <module name="java-exceptions-template" target="1.8" />
+      <module name="meet-autocode" target="11" />
+      <module name="oop-basics-figures" target="11" />
+      <module name="oop-basics-segments" target="11" />
+      <module name="oop-basics-triangle" target="11" />
+      <module name="rectangular-spliterator" target="11" />
+      <module name="risky-calls" target="11" />
+      <module name="row-mapper" target="11" />
+      <module name="scheduling-assistant" target="11" />
+      <module name="service" target="11" />
+      <module name="servlets-expression-calculator" target="11" />
+      <module name="set-mapper" target="11" />
+      <module name="sql-queries" target="11" />
+      <module name="streams-count-words" target="11" />
+      <module name="streams-pipelines" target="11" />
+      <module name="thread-factoring" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

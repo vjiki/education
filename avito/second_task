@@ -1,0 +1,61 @@
+/**
+ * Класс, используемый для подсчёта наименьшего значения в окне размером w.
+ */
+public class SlidingWindowMin {
+
+    Comporator<Integer> intComporator = (Integer::compareTo);
+    private PriorityQueue<Integer> minElementQueue = new PriorityQueue<>(intComporator, intComporator.reversed());
+    private int windowSize;
+    private List<Integer> elements = new LinkedList<>();
+
+    public SlidingWindowMin(int w) {
+        this.windowSize = w;
+    }
+
+
+    O(w)
+    /**
+     * Добавляет новое значение в окно. В случае, если размер окна превышает w,
+     * удаляет значение из начала окна.
+     */
+    public void add(int value) {
+        //
+        elements.add(value);
+        if (elements.size() > windowSize) {
+            minElementQueue.remove(elements.get(0)); //
+            elements.remove(elements.get(0));
+        }
+        minElementQueue.add(value);
+    }
+
+    // o(1)
+    /**
+     * Возвращает наименьшее значение в окне.
+     */
+    public int getMin() {
+        //
+        //gets first element
+        return minElementQueue.peek();
+    }
+
+    public static void main(String[] args) {
+        SlidingWindowMin window = new SlidingWindowMin(3);
+        for (int i = 4; i < 14; i++) {
+            int curValue = 34 % i;
+            window.add(curValue);
+            System.out.format("curValue = %2d , minValue = %2d\n", curValue, window.getMin());
+            // curValue =  2 , minValue =  2
+            // curValue =  4 , minValue =  2
+            // curValue =  4 , minValue =  2
+            // curValue =  6 , minValue =  4
+            // curValue =  2 , minValue =  2
+            // curValue =  7 , minValue =  2
+            // curValue =  4 , minValue =  2
+            // curValue =  1 , minValue =  1
+            // curValue = 10 , minValue =  1
+            // curValue =  8 , minValue =  1
+        }
+    }
+}
+
+[2,[4,4,6],2,7,4,1,10,8]

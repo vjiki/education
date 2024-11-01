@@ -97,6 +97,7 @@ public class ConsecutiveNumberRangeConverterV3 {
 //    inputList.add("15");
 //    inputList.add("20");
 
+    //1,1,1,2,1,2,3,4,5,
 
     inputList.add("1");
     inputList.add("2");
