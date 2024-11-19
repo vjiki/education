@@ -1,0 +1,89 @@
+//1) написать простейший метод, который бы при работе бросил StackOverflowError
+
+
+m() {
+    m();
+}
+
+int throwsStackOverflowError(int v) {
+   int d = v+1;
+   return throwsStackOverflowError(d);
+}
+
+
+//2) написать свой класс, который бы реализовывал стек, с методами push, pop,  и peekMax, который бы возращал max Элемент в стеке за О(1)
+
+
+public class MyStack { // T
+
+    private final PriorityQueue<Integer> queue; // TODO syntax
+    private final LinkedList<Integer> list = new LinkedList<>();
+
+    void MyStack(Comporator cmp) {
+        this.queue = new PriorityQueue<>(cmp);
+    }
+
+    void push(Integer elem) {
+        list.add(elem);
+        queue.push(elem);
+    }
+
+    Integer pop() {
+        Integer elem = list.getLast();
+        list.remove(elem);
+        queue.remove(elem);
+        return elem;
+    }
+
+    Integer peekMax() {
+        return queue.peek();
+    }
+}
+
+
+
+
+
+
+public void process(String oldName, String newName) {
+
+    Long id = exec("select id from file where name='" + oldName + "'");
+    if (id != null) {
+        try {
+            processFile(oldName, newName); // also better if it return something
+        } catch(Exception e) {
+            log.error();
+            throws e;
+        }
+        try
+        String newFileName = exec("update file set name='" + newName + "' where id = " + id + "return *");
+        catch()
+            log.error();
+            throws e;
+        if (!newFileName.isBlack()) {
+
+        }
+    }
+
+}
+
+
+@Transactional
+public void processBD(String oldName, String newName) {
+    Long id = exec("select id from file where name='" + oldName + "'"); //выполнение запроса к БД
+    //processFile(oldName, newName); //переименование файла на диске
+    exec("update file set name='" + newName + "' where id = " + id); //выполнение запроса к БД
+}
+
+public void processFile(oldName, newName) {
+    processFile(oldName, newName);
+}
+
+
+
+
+
+
+
+
+
