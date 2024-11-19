@@ -1,0 +1,161 @@
+public class FileRenameSaga {
+
+    private FileRenameSagaStep1 step1;
+    private FileRenameSagaStep2 step2;
+
+    public FileRenameSaga() {
+        this.step1 = new FileRenameSagaStep1();
+        this.step2 = new FileRenameSagaStep2();
+    }
+
+    // Orchestrates the saga
+    @Transactional
+    public void execute(String oldName, String newName) {
+        boolean step1Success = false;
+        boolean step2Success = false;
+
+        try {
+            // Step 1: Rename file on disk
+            step1Success = step1.renameFile(oldName, newName);
+
+            if (!step1Success) {
+                throw new RuntimeException("Failed to rename the file on disk.");
+            }
+
+            // Step 2: Update database
+            step2Success = step2.updateDatabase(oldName, newName);
+
+            if (!step2Success) {
+                throw new RuntimeException("Failed to update the database.");
+            }
+
+            // If both steps are successful, commit the saga
+            System.out.println("Saga completed successfully!");
+
+        } catch (Exception e) {
+            // Compensation (rollback actions)
+            System.out.println("Saga failed, performing compensation...");
+
+            if (step1Success) {
+                // Compensation for Step 1: Undo file renaming
+                step1.undoRenameFile(oldName, newName);
+            }
+
+            if (step2Success) {
+                // Compensation for Step 2: Rollback database update
+                step2.undoUpdateDatabase(oldName, newName);
+            }
+
+            throw new RuntimeException("Saga failed and compensations were triggered.", e);
+        }
+    }
+}
+
+
+public class FileRenameSagaStep1 {
+
+    public boolean renameFile(String oldName, String newName) {
+        File file = new File(oldName);
+        if (!file.exists()) {
+            throw new IllegalArgumentException("File " + oldName + " does not exist.");
+        }
+
+        boolean renamed = file.renameTo(new File(newName));
+        if (!renamed) {
+            throw new RuntimeException("Failed to rename the file.");
+        }
+
+        return true;
+    }
+
+    // Compensation: Undo file rename
+    public void undoRenameFile(String oldName, String newName) {
+        File file = new File(newName);
+        if (file.exists()) {
+            boolean renamedBack = file.renameTo(new File(oldName));
+            if (!renamedBack) {
+                throw new RuntimeException("Failed to undo file renaming.");
+            }
+        } else {
+            throw new RuntimeException("File to undo rename not found.");
+        }
+    }
+}
+
+
+
+public class FileRenameSagaStep2 {
+
+    @Transactional
+    public boolean updateDatabase(String oldName, String newName) {
+        // Query to get file id from database
+        Long id = getFileIdByName(oldName);
+        if (id == null) {
+            throw new IllegalArgumentException("File with name " + oldName + " not found in the database.");
+        }
+
+        String updateQuery = "UPDATE file SET name = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(updateQuery)) {
+            stmt.setString(1, newName);
+            stmt.setLong(2, id);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new RuntimeException("Database update failed. No rows affected.");
+            }
+
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException("Database update failed", e);
+        }
+    }
+
+    // Compensation: Undo database update
+    @Transactional
+    public void undoUpdateDatabase(String oldName, String newName) {
+        Long id = getFileIdByName(newName); // Assuming we find the file by newName
+        if (id == null) {
+            throw new RuntimeException("File with new name " + newName + " not found in the database.");
+        }
+
+        String updateQuery = "UPDATE file SET name = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(updateQuery)) {
+            stmt.setString(1, oldName);
+            stmt.setLong(2, id);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new RuntimeException("Database undo update failed. No rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database undo update failed", e);
+        }
+    }
+
+    private Long getFileIdByName(String name) {
+        String query = "SELECT id FROM file WHERE name = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("id");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error querying file ID", e);
+        }
+        return null;
+    }
+}
+
+
+public class FileRenameService {
+
+    private FileRenameSaga saga;
+
+    public FileRenameService() {
+        this.saga = new FileRenameSaga();
+    }
+
+    public void renameFile(String oldName, String newName) {
+        saga.execute(oldName, newName);
+    }
+}
+

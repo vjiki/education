@@ -1,0 +1,50 @@
+@Transactional
+public void processBD(String oldName, String newName) {
+    // Step 1: Get the file ID and version
+    FileRecord fileRecord = getFileByNameWithVersion(oldName);
+    if (fileRecord == null) {
+        throw new IllegalArgumentException("File with name " + oldName + " not found in database.");
+    }
+
+    // Step 2: Rename the file on disk
+    File file = new File(oldName);
+    if (!file.exists()) {
+        throw new IllegalArgumentException("File " + oldName + " does not exist on disk.");
+    }
+
+    boolean fileRenamed = file.renameTo(new File(newName));
+    if (!fileRenamed) {
+        throw new RuntimeException("Failed to rename the file on disk.");
+    }
+
+    // Step 3: Update the file name in the database
+    String updateQuery = "UPDATE file SET name = ?, version = version + 1 WHERE id = ? AND version = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(updateQuery)) {
+        stmt.setString(1, newName);
+        stmt.setLong(2, fileRecord.getId());
+        stmt.setInt(3, fileRecord.getVersion());
+
+        int rowsAffected = stmt.executeUpdate();
+        if (rowsAffected == 0) {
+            throw new RuntimeException("Optimistic locking failed: File record was modified by another service.");
+        }
+    } catch (SQLException e) {
+        // Rollback file rename if database update fails
+        file.renameTo(new File(oldName)); // Undo the file renaming
+        throw new RuntimeException("Error updating file name in database. Rolled back file rename.", e);
+    }
+}
+
+private FileRecord getFileByNameWithVersion(String name) {
+    String query = "SELECT id, version FROM file WHERE name = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        stmt.setString(1, name);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new FileRecord(rs.getLong("id"), rs.getInt("version"));
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error querying file with version", e);
+    }
+    return null;
+}

@@ -1,0 +1,50 @@
+@Transactional
+public void processBD(String oldName, String newName) {
+    // Step 1: Lock the file record in the database to prevent race conditions
+    Long id = getFileIdByNameWithLock(oldName);
+    if (id == null) {
+        throw new IllegalArgumentException("File with name " + oldName + " not found in database.");
+    }
+
+    // Step 2: Rename the file on disk
+    File file = new File(oldName);
+    if (!file.exists()) {
+        throw new IllegalArgumentException("File " + oldName + " does not exist on disk.");
+    }
+
+    boolean fileRenamed = file.renameTo(new File(newName));
+    if (!fileRenamed) {
+        throw new RuntimeException("Failed to rename the file on disk.");
+    }
+
+    // Step 3: Update the file name in the database
+    String updateQuery = "UPDATE file SET name = ? WHERE id = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(updateQuery)) {
+        stmt.setString(1, newName);
+        stmt.setLong(2, id);
+        int rowsAffected = stmt.executeUpdate();
+
+        // If the database update fails, we should rollback the file rename
+        if (rowsAffected == 0) {
+            throw new RuntimeException("Database update failed, rolling back file rename.");
+        }
+    } catch (SQLException e) {
+        // Rollback file rename if database update fails
+        file.renameTo(new File(oldName)); // Undo the file renaming
+        throw new RuntimeException("Error updating file name in database. Rolled back file rename.", e);
+    }
+}
+
+private Long getFileIdByNameWithLock(String name) {
+    String query = "SELECT id FROM file WHERE name = ? FOR UPDATE"; // Lock the row
+    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        stmt.setString(1, name);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getLong("id");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error querying file ID with lock", e);
+    }
+    return null;
+}
