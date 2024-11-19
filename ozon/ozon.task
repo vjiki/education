@@ -1,0 +1,552 @@
+class Currency {
+  // TODO
+  public static final Currency RUB = new Currency("RUB");
+  public static final Currency USD = new Currency("USD");
+  private static Integer currentOrdinal = 0;
+  private static final Map<Integer, Currency> currencies = new HashMap<Currency>();
+  //Currency[]
+
+  private String name;
+  private Integer ordinal;
+
+  private Currency(String name) {
+     this.name = name;
+     this.oridinal = new Integer(currentOrdinal);
+     Currency.currentOrdinal++;
+  }
+
+  public int ordinal() {
+     return this.ordinal;
+  }
+
+  public static Currency[] entries() {
+    return currencies.toArray(); // ArrayUtils.getArray(currencies);
+  }
+
+  public static Currency getName(int ordinal) {
+    return currencies.get(ordinal);
+  }
+
+  public static Currency getValue(String name) {
+    if (RUB.name.equals(name)) {
+        return RUB;
+    }
+    if (USD.name.equals(name)) {
+        return USD;
+    }
+    return null;
+  }
+
+  // TODO equals and hashcode
+
+}
+
+// Currency.RUB.ordinal() == ?
+// Currency.USD.ordinal() == ?
+
+
+//Хотим так обращаться к элементам
+//Currency.RUB
+//Currency.USD
+// Currency.RUB == "RUB" | false
+// Currency.RUB == Currency.RUB | true
+// Currency.RUB = Currency.USD.ordinal();
+/**
+enum Currency {
+    RUB,
+    USD
+}
+*/
+
+
+
+
+Есть две таблицы
+tab1
+
+id
+1
+2
+3
+
+tab2
+
+id
+1
+1
+2
+2
+
+Cкажите количество строк в результирующей таблице при
+1) inner join
+2) left join
+3) cross join
+
+*Таблица tab1 всегда слева
+
+
+
+
+
+@Singleton
+public class Handler {
+
+    AtomicInteger count = new AtomicInteger(0);
+
+
+    /**
+     * Этот метод записывает информацию о каждом разе, когда он был вызван и ничего не возвращает.
+     * Этот метод находится под большой нагрузкой, мы хотим иметь максимальную пропускную способность для него.
+     */
+    @POST("/register_event")
+    public void registerEvent(Req req) {
+        count.getAndIncremen();
+    }
+
+    /**
+     * Этот метод возвращает сколько раз был вызван метод /register_event с момента старта сервера.
+     * Этот метод вызывается редко, 1 раз в минуту.
+     */
+    @GET("/events_number")
+    public int getEventsNumber(Req req) {
+        return count.get();
+    }
+}
+
+
+
+class Currency {
+  // TODO
+  public static final Currency RUB = new Currency("RUB");
+  public static final Currency USD = new Currency("USD");
+  private static Integer currentOrdinal = 0;
+  private static final Map<Integer, Currency> currencies = new HashMap<Currency>();
+  //Currency[]
+
+  private String name;
+  private Integer ordinal;
+
+  private Currency(String name) {
+     this.name = name;
+     this.oridinal = new Integer(currentOrdinal);
+     Currency.currentOrdinal++;
+  }
+
+  public int ordinal() {
+     return this.ordinal;
+  }
+
+  public static Currency[] entries() {
+    return currencies.toArray(); // ArrayUtils.getArray(currencies);
+  }
+
+  public static Currency getName(int ordinal) {
+    return currencies.get(ordinal);
+  }
+
+  public static Currency getValue(String name) {
+    if (RUB.name.equals(name)) {
+        return RUB;
+    }
+    if (USD.name.equals(name)) {
+        return USD;
+    }
+    return null;
+  }
+
+  // TODO equals and hashcode
+
+}
+
+// Currency.RUB.ordinal() == ?
+// Currenc ?USD.ordinal() == ?
+
+
+//Хотим так обращаться к элементам
+//Currency.RUB
+//Currency.USD
+// Currency.RUB == "RUB" | false
+// Currency.RUB == Currency.RUB | true
+// Currency.RUB = Currency.USD.ordinal();
+/**
+enum Currency {
+    RUB,
+    USD
+}
+*/
+
+
+
+// Эта задача решается через ConcurrentHashMap() для каждого потока отдельный счетчик и когда нужно сделать гет они складываются
+
+
+Есть теоретическая машина на 100 ядер, на нём запущен HTTP сервер на Java, который работает на 100 потоках. Всё что делает этот сервер -- считает количество запросов на него с момента старта сервера.
+
+То есть, условно, есть два метода:
+
+@Singleton
+public class Handler {
+    /**
+     * Этот метод записывает информацию о каждом разе, когда он был вызван и ничего не возвращает.
+     * Этот метод находится под большой нагрузкой, мы хотим иметь максимальную пропускную способность для него.
+     */
+    @POST("/register_event")
+    public void registerEvent(Req req) {
+        //
+    }
+
+    /**
+     * Этот метод возвращает сколько раз был вызван метод /register_event с момента старта сервера.
+     * Этот метод вызывается редко, 1 раз в минуту.
+     */
+    @GET("/events_number")
+    public int registerEvent(Req req) {
+        return //...
+    }
+}
+
+Как реализовать сервер-счётчик максимально эффективно с точки зрения пропускной способности в единицу времени?
+
+
+import javax.inject.Singleton;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Singleton
+public class Handler {
+
+    // ConcurrentHashMap to store event counts (key: event, value: count)
+    private final ConcurrentHashMap<String, AtomicInteger> eventCounts = new ConcurrentHashMap<>();
+
+    /**
+     * Этот метод записывает информацию о каждом разе, когда он был вызван и ничего не возвращает.
+     * Этот метод находится под большой нагрузкой, мы хотим иметь максимальную пропускную способность для него.
+     */
+    @POST("/register_event")
+    public void registerEvent(Req req) {
+        // Получаем или создаём новый счётчик для данного события (например, "register_event")
+        eventCounts
+            .computeIfAbsent("register_event", key -> new AtomicInteger(0))
+            .incrementAndGet();
+    }
+
+    /**
+     * Этот метод возвращает сколько раз был вызван метод /register_event с момента старта сервера.
+     * Этот метод вызывается редко, 1 раз в минуту.
+     */
+    @GET("/events_number")
+    public int getEventCount() {
+        // Получаем количество событий по ключу
+        AtomicInteger count = eventCounts.get("register_event");
+        return (count != null) ? count.get() : 0;
+    }
+}
+
+
+import java.util.concurrent.atomic.LongAdder;
+
+private final LongAdder eventCount = new LongAdder();
+
+@POST("/register_event")
+public void registerEvent(Req req) {
+    eventCount.increment();
+}
+
+@GET("/events_number")
+public int getEventCount() {
+    return eventCount.intValue();
+}
+
+
+import javax.inject.Singleton;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Singleton
+public class Handler {
+
+    // Атомарная переменная для подсчета количества событий
+    private final AtomicInteger eventCount = new AtomicInteger(0);
+
+    /**
+     * Этот метод записывает информацию о каждом разе, когда он был вызван и ничего не возвращает.
+     * Этот метод находится под большой нагрузкой, мы хотим иметь максимальную пропускную способность для него.
+     */
+    @POST("/register_event")
+    public void registerEvent(Req req) {
+        // Атомарно увеличиваем счетчик событий
+        eventCount.incrementAndGet();
+    }
+
+    /**
+     * Этот метод возвращает сколько раз был вызван метод /register_event с момента старта сервера.
+     * Этот метод вызывается редко, 1 раз в минуту.
+     */
+    @GET("/events_number")
+    public int getEventCount() {
+        // Просто возвращаем текущее значение счетчика
+        return eventCount.get();
+    }
+}
+
+
+
+
+
+
+Реализовать свой перечислимый тип (enum), как если бы до появления современного enum в Java 1.5.
+Нужно реализовать контракт современного Java-enum:
+можно легко получать любое значение энума
+безопасное сравнение значений по ссылке (`==`)
+каждое значение имеет строковое имя, совпадающее с названием значения
+каждое значение имеет целочисленный идентификатор `ordinal`, который содержит номер значения в порядке его объявления в энуме
+можно получить список всех значений энума
+можно получить значение по его `ordinal`
+можно получить значение по его имени
+
+Для примера можно взять список валют. Важно, чтобы список был потенциально расширяемым, потому что качество кода будет определять, насколько беспроблемно в будущем пройдет добавление значений в энум.
+
+
+class Currency {
+  // TODO
+}
+
+
+
+Дана строка s. Нужно найти первый не повторяющийся символ в строке и вернуть его индекс. Если такого символа нет, вернуть -1.
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+
+
+    }
+}
+
+
+
+1. tab1.tab2 inner join
+1 - 1
+1 - 1
+2 - 2
+2 - 2
+
+2. left
+1 - 1
+2 - 2
+
+3.
+
+
+
+Есть две таблицы
+tab1
+
+id
+1
+2
+3
+
+tab2
+
+id
+1
+1
+2
+2
+
+Cкажите количество строк в результирующей таблице при
+1) inner join
+2) left join
+3) cross join
+
+*Таблица tab1 всегда слева
+
+Давайте рассмотрим, как будет выглядеть результат при разных типах объединений для этих двух таблиц.
+
+**Таблицы:**
+
+**tab1:**
+| id |
+|----|
+| 1  |
+| 2  |
+| 3  |
+
+**tab2:**
+| id |
+|----|
+| 1  |
+| 1  |
+| 2  |
+| 2  |
+
+### 1) **INNER JOIN**
+
+`INNER JOIN` объединяет строки из обеих таблиц, где значения в столбце `id` совпадают. В результате будут только те строки, где для каждого значения `id` из `tab1` найдутся соответствующие строки в `tab2`.
+
+- Для `id = 1` в `tab1` есть 2 строки в `tab2` (две строки с `id = 1`).
+- Для `id = 2` в `tab1` есть 2 строки в `tab2` (две строки с `id = 2`).
+- Для `id = 3` в `tab1` нет строк с таким значением в `tab2`.
+
+Итак, результирующая таблица будет иметь 4 строки (2 строки для `id = 1` и 2 строки для `id = 2`).
+
+**Ответ: 4 строки.**
+
+### 2) **LEFT JOIN**
+
+`LEFT JOIN` возвращает все строки из левой таблицы (в нашем случае `tab1`), а для строк без соответствий в правой таблице (`tab2`) будет заполнять поля правой таблицы значениями `NULL`.
+
+- Для `id = 1` в `tab1` есть 2 строки в `tab2`.
+- Для `id = 2` в `tab1` есть 2 строки в `tab2`.
+- Для `id = 3` в `tab1` нет строк в `tab2`, но будет одна строка с `NULL` в `tab2`.
+
+Итак, результирующая таблица будет иметь 3 строки из `tab1`, каждая из которых будет иметь по 2 строки для `id = 1` и `id = 2` и одну строку с `NULL` для `id = 3`.
+
+**Ответ: 5 строк.**
+
+### 3) **CROSS JOIN**
+
+`CROSS JOIN` выполняет декартово произведение строк из обеих таблиц, т.е. каждая строка из `tab1` будет комбинирована с каждой строкой из `tab2`.
+
+- В `tab1` 3 строки.
+- В `tab2` 4 строки.
+
+Таким образом, результирующая таблица будет содержать \( 3 \times 4 = 12 \) строк.
+
+**Ответ: 12 строк.**
+
+### Резюме:
+1. **INNER JOIN**: 4 строки.
+2. **LEFT JOIN**: 5 строк.
+3. **CROSS JOIN**: 12 строк.
+
+
+Дана табличка user_orders
+|ts|user_id|order_value|
+Для каждого пользователя вернуть сумму первой покупки
+
+
+user_orders
+|ts|user_id|order_value|
+
+|timestamp|user_id|order_value|
+
+SELECT user_id, order_value, ts from user_orders where user_id == user_id && ts == min_ts  SELECT user_id, MIN(ts) as new_user_id, min_ts FROM user_orders GROUPED BY user_id order by ts
+
+SELECT user_id, SUM(order_value) AS first_purchase_sum
+FROM (
+    SELECT user_id, order_value
+    FROM user_orders
+    WHERE (user_id, ts) IN (
+        SELECT user_id, MIN(ts)
+        FROM user_orders
+        GROUP BY user_id
+    )
+) AS first_orders
+GROUP BY user_id;
+
+
+
+
+import java.util.Arrays;
+
+public class CurrencyEnum {
+
+    // Приватные поля
+    private final String name;
+    private final int ordinal;
+
+    // Статический массив всех значений
+    private static final CurrencyEnum[] VALUES;
+
+    // Пример значений валют
+    public static final CurrencyEnum USD = new CurrencyEnum("USD", 0);
+    public static final CurrencyEnum EUR = new CurrencyEnum("EUR", 1);
+    public static final CurrencyEnum RUB = new CurrencyEnum("RUB", 2);
+
+    // Статический блок для инициализации массива значений
+    static {
+        VALUES = new CurrencyEnum[]{USD, EUR, RUB};
+    }
+
+    // Конструктор, доступный только внутри класса
+    private CurrencyEnum(String name, int ordinal) {
+        this.name = name;
+        this.ordinal = ordinal;
+    }
+
+    // Получение имени
+    public String getName() {
+        return name;
+    }
+
+    // Получение порядкового номера
+    public int ordinal() {
+        return ordinal;
+    }
+
+    // Получение всех значений
+    public static CurrencyEnum[] values() {
+        return VALUES.clone();
+    }
+
+    // Поиск значения по имени
+    public static CurrencyEnum valueOf(String name) {
+        for (CurrencyEnum value : VALUES) {
+            if (value.name.equals(name)) {
+                return value;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant " + name);
+    }
+
+    // Получение значения по порядковому номеру
+    public static CurrencyEnum valueOfOrdinal(int ordinal) {
+        if (ordinal >= 0 && ordinal < VALUES.length) {
+            return VALUES[ordinal];
+        }
+        throw new IndexOutOfBoundsException("Ordinal out of range: " + ordinal);
+    }
+
+    // Переопределение метода equals (для безопасного сравнения по ссылке)
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof CurrencyEnum) {
+            CurrencyEnum other = (CurrencyEnum) obj;
+            return this.ordinal == other.ordinal;
+        }
+        return false;
+    }
+
+    // Переопределение метода hashCode
+    public int hashCode() {
+        return Integer.hashCode(ordinal);
+    }
+
+    // Переопределение метода toString (для строкового представления)
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public static void main(String[] args) {
+        // Пример использования
+        System.out.println("All currencies:");
+        for (CurrencyEnum currency : CurrencyEnum.values()) {
+            System.out.println(currency);
+        }
+
+        // Получение по имени
+        CurrencyEnum usd = CurrencyEnum.valueOf("USD");
+        System.out.println("Currency for USD: " + usd);
+
+        // Получение по ordinal
+        CurrencyEnum secondCurrency = CurrencyEnum.valueOfOrdinal(1);
+        System.out.println("Currency at ordinal 1: " + secondCurrency);
+    }
+}
+
