@@ -109,3 +109,47 @@ int getMaxSubStringFromString(String row, int k) {
 
 
 }
+
+
+
+
+import java.util.HashMap;
+
+public class MaxSubstring {
+
+    public static int maxSubstringLength(String s, int k) {
+        // Хэш-карта для отслеживания количества каждого символа в окне
+        HashMap<Character, Integer> charCount = new HashMap<>();
+        int left = 0;
+        int maxLength = 0;
+
+        // Проходим по строке с правым указателем
+        for (int right = 0; right < s.length(); right++) {
+            // Добавляем символ в хэш-карту
+            char currentChar = s.charAt(right);
+            charCount.put(currentChar, charCount.getOrDefault(currentChar, 0) + 1);
+
+            // Если количество уникальных символов превышает k, сдвигаем левый указатель
+            while (charCount.size() > k) {
+                char leftChar = s.charAt(left);
+                charCount.put(leftChar, charCount.get(leftChar) - 1);
+                if (charCount.get(leftChar) == 0) {
+                    charCount.remove(leftChar);
+                }
+                left++;
+            }
+
+            // Обновляем максимальную длину подстроки
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        String input = "acaba";
+        int k = 2;
+        int result = maxSubstringLength(input, k);
+        System.out.println("Максимальная длина подстроки: " + result);  // Выводит: 3
+    }
+}
