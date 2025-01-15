@@ -8,8 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/solutions/sprint3/finals/D" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/solutions/sprint6/D/v2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/yandex/algorithms/solutions/sprint7/K/v2" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/leetcode/robot" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/leetcode/sumtwointegers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apple" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/yandex/interview2023/num-islands/simple" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -22,6 +22,15 @@
         <SOURCES>
           <root url="jar://$MODULE_DIR$/coursera/algs4.jar!/" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

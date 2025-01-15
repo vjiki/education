@@ -1,0 +1,36 @@
+[
+  {
+    "requestType": "Panorama",
+    "orderType": "NORMAL",
+    "revised": false,
+    "amended": false,
+    "includeXmlOutput": false,
+    "clinicalNote": "This is a clinical note!",
+    "documentTitle": "Natera Report",
+    "locale": "en_EU",
+    "product": {
+      "name": "Panorama",
+      "testType": "NPT"
+    },
+    "caseInfo": {
+      ...
+    }
+  },
+  {
+    "requestType": "Panorama",
+    "orderType": "NORMAL",
+    "revised": false,
+    "amended": false,
+    "includeXmlOutput": false,
+    "clinicalNote": "This is a clinical note!",
+    "documentTitle": "Natera Report",
+    "locale": "de_DE",
+    "product": {
+      "name": "Panorama",
+      "testType": "NPT"
+    },
+    "caseInfo": {
+      ....
+    }
+  }
+]
